@@ -1,0 +1,101 @@
+/*
+ * @Author: Alex chenzeyongjsj@163.com 
+ * @Date: 2018-02-28 16:42:54 
+ * @Last Modified by:   Alex chenzeyongjsj@163.com 
+ * @Last Modified time: 2018-02-28 16:42:54 
+ */
+html,
+body,
+div,
+span,
+object,
+li,
+ul,
+img iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+a,
+em,
+img,
+strong,
+sub,
+sup,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+input,
+figure,
+figcaption,
+footer,
+header,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: 100%;
+  font-family: "Microsoft YaHei", Arial, "宋体", "华文细黑", sans-serif;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+img {
+  width: auto;
+  height: auto;
+  border-width: 0 0 0 0;
+}
+a {
+  text-decoration: none;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+/*
+ * @Author: alex (chenzeyongjsj@163.com) 
+ * @Date: 2018-01-25 21:07:45 
+ * @Last Modified by: alex (chenzeyongjsj@163.com)
+ * @Last Modified time: 2018-01-25 21:14:20
+ */
+[v-cloak] {
+  display: none;
+}
