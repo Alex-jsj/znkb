@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:42:39 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-05 16:18:51
+ * @Last Modified time: 2018-03-05 16:55:55
  */
 <template>
   <div class="login">
@@ -89,6 +89,7 @@ export default {
     },
     //提交
     formSubmit: function() {
+      var that = this;
       if (this.userTest && this.psdTest) {
         //验证通过
         this.$http({
@@ -117,7 +118,8 @@ export default {
           .then(response => {
             localStorage.setItem("userToken", response.data.token);
             if (response.data.status == "001") {
-              //状态码
+              //提交成功后跳转到首面
+              that.$router.push({ path: "/pages/Home" });
             }
           })
           .catch(error => {
@@ -142,7 +144,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-@import "../assets/css/less_config.less";
 .login {
   width: 100%;
   height: 100vh;
