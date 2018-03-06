@@ -10,9 +10,9 @@
     <div class="info">
       <div class="top-box">
         <span class="date float-left">2018/01/31 星期三</span>
-        <a href="javascript:void(0);" class="float-right">
+        <router-link to="/" class="float-right" @click="outLogin()">
           <span class="outlogin">退出登录</span>
-        </a>
+        </router-link>
       </div>
       <p class="name">{{user_info.name}}</p>
       <p class="department">{{user_info.department}}</p>
@@ -42,10 +42,15 @@
     </div>
     <!-- 菜单 -->
     <div class="menu">
-      <ul>
+      <ul v-if="bg_choose">
         <li>
           <img src="../../static/img/icon1.png" alt="">
           <p></p>
+        </li>
+      </ul>
+      <ul v-else>
+        <li>
+
         </li>
       </ul>
     </div>
@@ -100,7 +105,7 @@ export default {
         @forecolor: 绘制圆环的前景色，颜色代码 
         @bgcolor: 绘制圆环的背景色，颜色代码 
     */
-    drawMain(drawing_elem, percent, forecolor, bgcolor) {
+    drawMain: function(drawing_elem, percent, forecolor, bgcolor) {
       var context = drawing_elem.getContext("2d");
       var center_x = drawing_elem.width / 2;
       var center_y = drawing_elem.height / 2;
@@ -163,7 +168,9 @@ export default {
         if (speed >= percent) return;
         speed += 1;
       })();
-    }
+    },
+    //退出登录
+    outLogin: function() {}
   }
 };
 </script>
@@ -283,7 +290,7 @@ export default {
   }
   .menu {
     width: 13.5rem;
-    margin:  0 auto;
+    margin: 0 auto;
   }
 }
 .home-good {
@@ -296,7 +303,7 @@ export default {
   .attendance {
     .container {
       > p {
-        > span {
+        .text2 {
           color: #cb121b;
         }
       }
