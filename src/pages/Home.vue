@@ -45,6 +45,7 @@
       <ul>
         <li>
           <img src="../../static/img/icon1.png" alt="">
+          <p></p>
         </li>
       </ul>
     </div>
@@ -279,6 +280,10 @@ export default {
         right: 0;
       }
     }
+  }
+  .menu {
+    width: 13.5rem;
+    margin:  0 auto;
   }
 }
 .home-good {
