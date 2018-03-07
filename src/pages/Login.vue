@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:42:39 
- * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-05 16:55:55
+ * @Last Modified by: alex (chenzeyongjsj@163.com)
+ * @Last Modified time: 2018-03-07 22:44:44
  */
 <template>
   <div class="login">
@@ -16,7 +16,6 @@
     <div class="login-box">
       <!-- user -->
       <div class="container user">
-        <!-- 限制只能输入数字字母小数点 -->
         <input type="text" placeholder="请输入学号 / 工号" v-model="user" @blur="userV()" :class="{'test':userTest}">
         <i class="iconfont icon-user"></i>
         <!-- 错误提示 -->
@@ -53,6 +52,13 @@ export default {
       psdTest: false,
       userToken: ""
     };
+  },
+  mounted: function() {
+    //如果已登录
+    if (localStorage.getItem("userToken")) {
+      //跳转到首页
+      this.$router.push({ path: "/pages/Home" });
+    }
   },
   methods: {
     //用户名验证

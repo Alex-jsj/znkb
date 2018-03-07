@@ -2,14 +2,14 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
  * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-07 22:33:23
+ * @Last Modified time: 2018-03-07 22:52:00
  */
 
 <template>
   <div class="myTimetable">
     <div class="info">
       <div class="top-box">
-        <router-link to="/" class="float-right" @click="outLogin()">
+        <router-link to="./Login" class="float-right" @click="outLogin()">
           <span class="outlogin" @click="outLogin()">退出登录</span>
         </router-link>
       </div>

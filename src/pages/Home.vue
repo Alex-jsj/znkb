@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
  * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-07 22:31:41
+ * @Last Modified time: 2018-03-07 22:53:29
  */
 
 <template>
@@ -10,7 +10,7 @@
     <div class="info">
       <div class="top-box">
         <span class="date float-left">2018/01/31 星期三</span>
-        <router-link to="/" class="float-right" @click="outLogin()">
+        <router-link to="./Login" class="float-right" @click="outLogin()">
           <span class="outlogin" @click="outLogin()">退出登录</span>
         </router-link>
       </div>
@@ -208,6 +208,7 @@ export default {
           );
           let time_canvas = document.getElementById("attendance");
           let canvas_color;
+          //根据出勤率更换首页风格
           if (this.attendance < 90) {
             this.bg_choose = false;
             canvas_color = "#cb121b";
