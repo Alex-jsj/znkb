@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
- * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-07 17:27:46
+ * @Last Modified by: alex (chenzeyongjsj@163.com)
+ * @Last Modified time: 2018-03-07 22:31:41
  */
 
 <template>
@@ -77,7 +77,7 @@ export default {
           img_src: "./static/img/icon1.png",
           img_class: "menu-icon",
           menu_title: "我的课表",
-          menu_link: "/",
+          menu_link: "./myTimetable",
           new_message: false
         },
         {
