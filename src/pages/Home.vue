@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-05 17:34:08
+ * @Last Modified time: 2018-03-07 17:27:46
  */
 
 <template>
@@ -11,7 +11,7 @@
       <div class="top-box">
         <span class="date float-left">2018/01/31 星期三</span>
         <router-link to="/" class="float-right" @click="outLogin()">
-          <span class="outlogin">退出登录</span>
+          <span class="outlogin" @click="outLogin()">退出登录</span>
         </router-link>
       </div>
       <p class="name">{{user_info.name}}</p>
@@ -43,14 +43,21 @@
     <!-- 菜单 -->
     <div class="menu">
       <ul v-if="bg_choose">
-        <li>
-          <img src="../../static/img/icon1.png" alt="">
-          <p></p>
+        <li class="float-left" v-for="item in menu_good" :key="item.id">
+          <router-link :to="item.menu_link">
+            <img :src="item.img_src" :class="item.img_class">
+            <p class="menu-title">{{item.menu_title}}</p>
+            <p class="prompt" v-if="item.new_message">{{message}}</p>
+          </router-link>
         </li>
       </ul>
       <ul v-else>
-        <li>
-
+        <li class="float-left" v-for="item in menu_bad" :key="item.id">
+          <router-link :to="item.menu_link">
+            <img :src="item.img_src" :class="item.img_class">
+            <p class="menu-title">{{item.menu_title}}</p>
+            <p class="prompt" v-if="item.new_message">{{message}}</p>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -62,41 +69,159 @@ export default {
   data() {
     return {
       user_info: Object,
+      message: 0,
       attendance: 100,
-      bg_choose: true //根据出勤率更换风格
+      bg_choose: true, //根据出勤率更换风格
+      menu_good: [
+        {
+          img_src: "./static/img/icon1.png",
+          img_class: "menu-icon",
+          menu_title: "我的课表",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon2.png",
+          img_class: "menu-icon icon2",
+          menu_title: "学生考勤",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon3.png",
+          img_class: "menu-icon icon3",
+          menu_title: "学生请假",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon4.png",
+          img_class: "menu-icon",
+          menu_title: "教室预约",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon5.png",
+          img_class: "menu-icon",
+          menu_title: "我要调课",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon6.png",
+          img_class: "menu-icon",
+          menu_title: "我要并课",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon7.png",
+          img_class: "menu-icon",
+          menu_title: "消息通知",
+          menu_link: "/",
+          new_message: true
+        }
+      ],
+      menu_bad: [
+        {
+          img_src: "./static/img/icon1-1.png",
+          img_class: "menu-icon",
+          menu_title: "我的课表",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon2-2.png",
+          img_class: "menu-icon icon2",
+          menu_title: "学生考勤",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon3-3.png",
+          img_class: "menu-icon icon3",
+          menu_title: "学生请假",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon4-4.png",
+          img_class: "menu-icon",
+          menu_title: "教室预约",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon5-5.png",
+          img_class: "menu-icon",
+          menu_title: "我要调课",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon6-6.png",
+          img_class: "menu-icon",
+          menu_title: "我要并课",
+          menu_link: "/",
+          new_message: false
+        },
+        {
+          img_src: "./static/img/icon7-7.png",
+          img_class: "menu-icon",
+          menu_title: "消息通知",
+          menu_link: "/",
+          new_message: true
+        }
+      ]
     };
   },
   mounted: function() {
-    let cw =
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
-    this.$http
-      .get("./static/mock/home.json")
-      .then(response => {
-        this.user_info = response.data;
-        //出勤率
-        this.attendance = Math.round(
-          (1 -
-            (response.data.leave + response.data.absenteeism) /
-              response.data.all_class) *
-            100
-        );
-        let time_canvas = document.getElementById("attendance");
-        let canvas_color;
-        if (this.attendance < 90) {
-          this.bg_choose = false;
-          canvas_color = "#cb121b";
-        } else {
-          this.bg_choose = true;
-          canvas_color = "#86c03f";
-        }
-        this.drawMain(time_canvas, this.attendance, canvas_color, "#c8c8c8");
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    //出勤率进度条
+    //判断登录状态
+    if (!localStorage.getItem("userToken")) {
+      //跳转到登录页
+      this.$router.push({ path: "/pages/Login" });
+    } else {
+      let cw =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth;
+      this.$http
+        .get("./static/mock/home.json")
+        .then(response => {
+          this.user_info = response.data;
+          //消息通知
+          if (this.user_info.new_message > 99) {
+            this.message = "99+";
+          } else if (this.user_info.new_message == 0) {
+            this.clear_message(this.menu_good);
+            this.clear_message(this.menu_bad);
+          } else {
+            this.message = this.user_info.new_message;
+          }
+          //出勤率
+          this.attendance = Math.round(
+            (1 -
+              (response.data.leave + response.data.absenteeism) /
+                response.data.all_class) *
+              100
+          );
+          let time_canvas = document.getElementById("attendance");
+          let canvas_color;
+          if (this.attendance < 90) {
+            this.bg_choose = false;
+            canvas_color = "#cb121b";
+          } else {
+            this.bg_choose = true;
+            canvas_color = "#86c03f";
+          }
+          //出勤率进度条
+          this.drawMain(time_canvas, this.attendance, canvas_color, "#c8c8c8");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   },
   methods: {
     /* 
@@ -170,7 +295,15 @@ export default {
       })();
     },
     //退出登录
-    outLogin: function() {}
+    outLogin: function() {
+      localStorage.removeItem("userToken");
+    },
+    //清除消息通知小红点
+    clear_message: function(obj) {
+      for (let i = 0; i < obj.length; i++) {
+        obj[i].new_message = false;
+      }
+    }
   }
 };
 </script>
@@ -291,6 +424,55 @@ export default {
   .menu {
     width: 13.5rem;
     margin: 0 auto;
+    margin-top: 7.02vh;
+    > ul {
+      > li {
+        width: 2.5rem;
+        height: 3.45rem;
+        position: relative;
+        text-align: center;
+        margin-right: 1.15rem;
+        margin-bottom: 3.85vh;
+        &:nth-child(4n) {
+          margin-right: 0;
+        }
+        .menu-icon {
+          width: 100%;
+          height: auto;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .icon2 {
+          top: -0.17rem;
+        }
+        .icon3 {
+          width: 2.68rem;
+          top: -0.15rem;
+        }
+        .menu-title {
+          font-size: 0.6rem;
+          color: #a0a0a0;
+          display: block;
+          margin-top: 0.9vh;
+          position: absolute;
+          bottom: 0;
+          white-space: nowrap;
+        }
+        .prompt {
+          display: block;
+          position: absolute;
+          top: -0.3rem;
+          right: -0.3rem;
+          font-size: 0.5rem;
+          color: #fff;
+          background: #e71b23;
+          border-radius: 0.5rem;
+          padding: 0 0.2rem;
+        }
+      }
+    }
   }
 }
 .home-good {

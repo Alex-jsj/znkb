@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:43:09 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-05 16:22:01
+ * @Last Modified time: 2018-03-07 17:26:12
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -14,6 +14,10 @@ Vue.use(Router)
 export default new Router({
     routes: [{
             path: '/',
+            component: Login
+        },
+        {
+            path: '/pages/Login',
             component: Login
         },
         {
