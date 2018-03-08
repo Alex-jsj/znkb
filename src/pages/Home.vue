@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
- * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-08 15:31:23
+ * @Last Modified by: alex (chenzeyongjsj@163.com)
+ * @Last Modified time: 2018-03-08 21:28:01
  */
 
 <template>
@@ -466,7 +466,7 @@ export default {
         .prompt {
           display: block;
           position: absolute;
-          top: -0.3rem;
+          top: -0.25rem;
           right: -0.3rem;
           font-size: 0.5rem;
           color: #fff;

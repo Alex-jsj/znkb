@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-08 13:51:13 
- * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-08 17:39:17
+ * @Last Modified by: alex (chenzeyongjsj@163.com)
+ * @Last Modified time: 2018-03-08 21:20:28
  */
 
 
@@ -16,9 +16,7 @@
         <span class="float-left width-3">操作</span>
       </div>
       <ul class="list" v-infinite-scroll="loadMore" infinite-scroll-immediate-check="true" infinite-scroll-disabled="loading" infinite-scroll-distance="0">
-        <li v-for="(item,index) in message_list" :key="index">
-          <!-- 未读提示 -->
-          <i class="notRead" v-if="!item.read"></i>
+        <li v-for="(item,index) in message_list" :key="index" :class="item.read?'read':'unread'">
           <div class="width-1 float-left list-item item-1">{{item.date}}</div>
           <div class="width-2 float-left list-item item-2">
             <p class="status" :class="item.statusClass">{{item.status}}</p>
@@ -126,17 +124,9 @@ export default {
         height: 3.5rem;
         background: rgb(242, 242, 242);
         position: relative;
+        color: #808080;
         &:nth-child(2n) {
           background: #fff;
-        }
-        .notRead {
-          position: absolute;
-          width: 0.3rem;
-          height: 0.3rem;
-          background: #cb121b;
-          border-radius: 50%;
-          top: 0.1rem;
-          left: 0.1rem;
         }
         .list-item {
           height: 100%;
@@ -170,7 +160,7 @@ export default {
             overflow: hidden;
             text-overflow: ellipsis;
             font-size: 0.6rem;
-            color: rgb(128, 128, 128);
+            color: #808080;
             position: absolute;
             top: 2rem;
           }
@@ -181,12 +171,12 @@ export default {
             font-size: 0.6rem;
             text-align: right;
             line-height: 3.5rem;
-            color: rgb(128, 128, 128);
+            color: #808080;
             padding-right: 1rem;
           }
         }
         .item-1 {
-          color: rgb(128, 128, 128);
+          color: #808080;
           text-align: left;
           font-size: 0.6rem;
           line-height: 3.5rem;
@@ -195,6 +185,34 @@ export default {
         .item-2 {
           padding-left: 0.75rem;
           position: relative;
+        }
+      }
+      /* 已读 */
+      .read {
+        .list-item {
+          .list-title {
+            color: #c5c4c4;
+          }
+          .info {
+            color: #c5c4c4;
+          }
+        }
+        .item-1 {
+          color: #c5c4c4;
+        }
+      }
+      /* 未读 */
+      .unread {
+        .list-item {
+          .list-title {
+            color: #696969;
+          }
+          .info {
+            color: #696969;
+          }
+        }
+        .item-1 {
+          color: #696969;
         }
       }
     }

@@ -28,7 +28,7 @@
         "statusClass": "shenshu",
         "title": "您有一个新的请假申请",
         "id": 3,
-        "read": false
+        "read": true
     },
     {
         "date": "2018/01/31",
@@ -36,7 +36,7 @@
         "statusClass": "tongzhi",
         "title": "关于您教室申请的通知",
         "id": 4,
-        "read": false
+        "read": true
     },
     {
         "date": "2018/01/31",
