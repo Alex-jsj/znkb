@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:42:39 
- * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-07 22:44:44
+ * @Last Modified by: Alex chenzeyongjsj@163.com
+ * @Last Modified time: 2018-03-08 15:30:13
  */
 <template>
   <div class="login">
@@ -54,6 +54,8 @@ export default {
     };
   },
   mounted: function() {
+    //修改页面title
+    document.title = "登录";
     //如果已登录
     if (localStorage.getItem("userToken")) {
       //跳转到首页

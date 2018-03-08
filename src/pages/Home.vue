@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
- * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-07 22:53:29
+ * @Last Modified by: Alex chenzeyongjsj@163.com
+ * @Last Modified time: 2018-03-08 15:31:23
  */
 
 <template>
@@ -77,7 +77,7 @@ export default {
           img_src: "./static/img/icon1.png",
           img_class: "menu-icon",
           menu_title: "我的课表",
-          menu_link: "./myTimetable",
+          menu_link: "/pages/myTimetable",
           new_message: false
         },
         {
@@ -119,7 +119,7 @@ export default {
           img_src: "./static/img/icon7.png",
           img_class: "menu-icon",
           menu_title: "消息通知",
-          menu_link: "/",
+          menu_link: "/pages/messageNotification",
           new_message: true
         }
       ],
@@ -128,7 +128,7 @@ export default {
           img_src: "./static/img/icon1-1.png",
           img_class: "menu-icon",
           menu_title: "我的课表",
-          menu_link: "/",
+          menu_link: "/pages/myTimetable",
           new_message: false
         },
         {
@@ -170,13 +170,15 @@ export default {
           img_src: "./static/img/icon7-7.png",
           img_class: "menu-icon",
           menu_title: "消息通知",
-          menu_link: "/",
+          menu_link: "/pages/messageNotification",
           new_message: true
         }
       ]
     };
   },
   mounted: function() {
+    //修改页面title
+    document.title = "设计艺术学院智慧管理系统";
     //判断登录状态
     if (!localStorage.getItem("userToken")) {
       //跳转到登录页
