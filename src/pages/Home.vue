@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
- * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-08 21:28:01
+ * @Last Modified by: Alex chenzeyongjsj@163.com
+ * @Last Modified time: 2018-03-09 14:54:26
  */
 
 <template>
@@ -10,7 +10,7 @@
     <div class="info">
       <div class="top-box">
         <span class="date float-left">2018/01/31 星期三</span>
-        <router-link to="./Login" class="float-right" @click="outLogin()">
+        <router-link to="/pages/Login" class="float-right" @click="outLogin()">
           <span class="outlogin" @click="outLogin()">退出登录</span>
         </router-link>
       </div>
@@ -119,7 +119,7 @@ export default {
           img_src: "./static/img/icon7.png",
           img_class: "menu-icon",
           menu_title: "消息通知",
-          menu_link: "/pages/messageNotification",
+          menu_link: "/pages/message/messageNotification",
           new_message: true
         }
       ],
@@ -170,7 +170,7 @@ export default {
           img_src: "./static/img/icon7-7.png",
           img_class: "menu-icon",
           menu_title: "消息通知",
-          menu_link: "/pages/messageNotification",
+          menu_link: "/pages/message/messageNotification",
           new_message: true
         }
       ]

@@ -2,14 +2,14 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-08 15:31:40
+ * @Last Modified time: 2018-03-09 15:39:28
  */
 
 <template>
   <div class="myTimetable">
     <!-- 课表 -->
     <!-- 底部菜单 -->
-    <Menu></Menu>
+    <Menu :linkActive="linkActive"></Menu>
   </div>
 </template>
 <script>
@@ -18,7 +18,9 @@ import Menu from "@/components/Menu";
 export default {
   name: "myTimetable",
   data() {
-    return {};
+    return {
+      linkActive: 1
+    };
   },
   components: {
     Menu

@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-08 13:51:13 
- * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-08 21:20:28
+ * @Last Modified by: Alex chenzeyongjsj@163.com
+ * @Last Modified time: 2018-03-09 15:38:58
  */
 
 
@@ -23,13 +23,13 @@
             <p class="list-title">{{item.title}}</p>
           </div>
           <div class="width-3 float-left list-item">
-            <router-link to="/" class="info">查看</router-link>
+            <router-link to="/pages/message/messageInfo" class="info">查看</router-link>
           </div>
         </li>
       </ul>
     </div>
     <!-- 底部菜单 -->
-    <Menu></Menu>
+    <Menu :linkActive="linkActive"></Menu>
   </div>
 </template>
 <script>
@@ -41,6 +41,7 @@ export default {
   name: "messageNotification",
   data() {
     return {
+      linkActive: 4,
       message_list: [],
       loading: false
     };

@@ -2,13 +2,13 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-08 13:51:58
+ * @Last Modified time: 2018-03-09 15:38:28
  */
 
 <template>
   <div class="menu">
     <ul>
-      <li class="float-left" v-for="item in menu" :key="item.id">
+      <li class="float-left" v-for="item in menu" :key="item.id" :class="{'link-active':item.active}">
         <router-link :to="item.link">
           <i class="iconfont" :class="item.icon"></i>
           <p>{{item.title}}</p>
@@ -20,43 +20,57 @@
 <script>
 export default {
   name: "Menu",
+  props: {
+    linkActive: Number
+  },
   data() {
     return {
       menu: [
         {
           title: "主页",
           icon: "icon-zhuye",
-          link: "../pages/Home"
+          link: "/pages/Home",
+          active: false
         },
         {
           title: "课表",
           icon: "icon-kebiao",
-          link: "../pages/myTimetable"
+          link: "/pages/myTimetable",
+          active: false
         },
         {
           title: "考勤",
           icon: "icon-kaoqin",
-          link: "../pages/kaoqin"
+          link: "/pages/kaoqin",
+          active: false
         },
         {
           title: "请假",
           icon: "icon-qingjia",
-          link: "../pages/qingjia"
+          link: "/pages/qingjia",
+          active: false
         },
         {
           title: "通知",
           icon: "icon-tongzhi",
-          link: "../pages/messageNotification"
+          link: "/pages/message/messageNotification",
+          active: false
         },
         {
           title: "更多",
           icon: "icon-gengduo",
-          link: "../pages/gengduo"
+          link: "/pages/gengduo",
+          active: false
         }
       ]
     };
   },
-  mounted: function() {},
+  mounted: function() {
+    for (let i = 0; i < this.menu.length; i++) {
+      this.menu[i].active = false;
+    }
+    this.menu[this.linkActive].active = true;
+  },
   methods: {}
 };
 </script>
@@ -95,12 +109,6 @@ export default {
         height: 100%;
         display: block;
       }
-      .router-link-exact-active.router-link-active {
-        .iconfont,
-        p {
-          color: #cb121b;
-        }
-      }
       .iconfont {
         position: absolute;
         top: 0;
@@ -129,6 +137,12 @@ export default {
         font-size: 0.45rem;
         white-space: nowrap;
         color: #a0a0a0;
+      }
+    }
+    .link-active {
+      .iconfont,
+      p {
+        color: #cb121b;
       }
     }
   }
