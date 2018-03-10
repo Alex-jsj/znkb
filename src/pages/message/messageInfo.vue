@@ -135,10 +135,10 @@ export default {
     .content {
       width: 100%;
       padding: 0 1rem;
-      font-size: 0.6rem;
+      font-size: 0.65rem;
       color: #999;
       padding-top: 1.1rem;
-      line-height: 1rem;
+      line-height: 1.1rem;
       margin-bottom: 3.1rem;
     }
   }
