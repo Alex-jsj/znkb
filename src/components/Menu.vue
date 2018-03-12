@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-09 15:38:28
+ * @Last Modified time: 2018-03-12 10:05:29
  */
 
 <template>
@@ -66,10 +66,12 @@ export default {
     };
   },
   mounted: function() {
-    for (let i = 0; i < this.menu.length; i++) {
-      this.menu[i].active = false;
+    if (this.linkActive) {
+      for (let i = 0; i < this.menu.length; i++) {
+        this.menu[i].active = false;
+      }
+      this.menu[this.linkActive].active = true;
     }
-    this.menu[this.linkActive].active = true;
   },
   methods: {}
 };

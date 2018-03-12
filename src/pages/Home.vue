@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-09 14:54:26
+ * @Last Modified time: 2018-03-12 10:19:56
  */
 
 <template>
@@ -98,7 +98,7 @@ export default {
           img_src: "./static/img/icon4.png",
           img_class: "menu-icon",
           menu_title: "教室预约",
-          menu_link: "/",
+          menu_link: "/pages/classroom/classroom",
           new_message: false
         },
         {
@@ -149,7 +149,7 @@ export default {
           img_src: "./static/img/icon4-4.png",
           img_class: "menu-icon",
           menu_title: "教室预约",
-          menu_link: "/",
+          menu_link: "/pages/classroom/classroom",
           new_message: false
         },
         {
