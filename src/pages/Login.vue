@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:42:39 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-13 12:14:14
+ * @Last Modified time: 2018-03-13 13:30:52
  */
 <template>
   <div class="login">
@@ -134,7 +134,7 @@ export default {
               //提交成功后跳转到首面
               that.$router.push({ path: "/pages/Home" });
             }
-            console.log(response);
+            // console.log(response);
           })
           .catch(error => {
             console.log(error);
