@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:42:39 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-13 13:30:52
+ * @Last Modified time: 2018-03-13 17:27:44
  */
 <template>
   <div class="login">
@@ -100,7 +100,6 @@ export default {
     formSubmit: function() {
       var that = this;
       if (this.userTest && this.psdTest) {
-        var d = { name: this.user, password: this.password };
         //验证通过
         this.$http({
           method: "get",

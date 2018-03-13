@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:42:54 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-13 14:28:33
+ * @Last Modified time: 2018-03-13 17:25:55
  */
 html,
 body,
@@ -64,6 +64,7 @@ summary,
 time,
 mark,
 audio,
+textarea,
 video {
   margin: 0;
   padding: 0;
