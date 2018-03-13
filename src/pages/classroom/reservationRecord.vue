@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-12 10:06:43 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-13 18:57:37
+ * @Last Modified time: 2018-03-13 19:10:23
  */
 
 <template>
@@ -13,7 +13,7 @@
       <span class="float-left width-2">使用时间</span>
       <span class="float-left width-3">教室</span>
       <span class="float-left width-4">状态</span>
-      <span class="float-left width-5">操作</span>
+      <!-- <span class="float-left width-5">操作</span> -->
     </div>
     <div class="list">
       <ul class="list" v-infinite-scroll="loadMore" infinite-scroll-immediate-check="true" infinite-scroll-disabled="loading" infinite-scroll-distance="0">
@@ -25,9 +25,9 @@
           </div>
           <div class="width-3 float-left list-item">{{item.classroom}}</div>
           <div class="width-4 float-left list-item" :class="item.statusClass">{{item.status}}</div>
-          <div class="width-5 float-left list-item">
+          <!-- <div class="width-5 float-left list-item">
             <router-link to="/pages/message/messageInfo" class="info">查看</router-link>
-          </div>
+          </div> -->
         </li>
       </ul>
     </div>
@@ -175,16 +175,16 @@ export default {
     width: 4rem;
   }
   .width-2 {
-    width: 4.63rem;
+    width: 5.5rem;
   }
   .width-3 {
-    width: 2.7rem;
+    width: 3.5rem;
   }
   .width-4 {
-    width: 2.4rem;
+    width: 2.95rem;
   }
-  .width-5 {
+  /* .width-5 {
     width: 2.22rem;
-  }
+  } */
 }
 </style>
