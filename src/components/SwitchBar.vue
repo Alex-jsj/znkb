@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-13 17:52:49 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-13 18:06:01
+ * @Last Modified time: 2018-03-13 19:12:23
  */
 
 
@@ -42,6 +42,8 @@ export default {
   height: 1.75rem;
   background: #fff;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 99;
   > li {
     width: 50%;
     height: 100%;
