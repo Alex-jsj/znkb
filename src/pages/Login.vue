@@ -40,6 +40,7 @@
   </div>
 </template>
 <script>
+import Qs from "qs";
 export default {
   name: "Login",
   data() {
@@ -104,27 +105,28 @@ export default {
         this.$http({
           method: "get",
           // url: "/Admin/Login/logTodo",
-          // url: "http://demo3.q-huan.com/Admin/Login/logTodo",
           url: "./static/mock/login.json",
-          data: d,
+          data: {
+            name: this.user,
+            password: this.password
+          },
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
           //格式化
-          /* transformRequest: [
+          transformRequest: [
             function(data) {
-              var ret = "";
-              for (var i = 0; i < data.length; i++) {
+              let ret = "";
+              for (let it in data) {
                 ret +=
                   encodeURIComponent(it) +
                   "=" +
                   encodeURIComponent(data[it]) +
                   "&";
               }
-              ret = ret.slice(0, -1); // 去掉最后的空行
               return ret;
             }
-          ], */
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
+          ]
         })
           .then(response => {
             localStorage.setItem("userToken", response.data.token);
