@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-12 10:06:43 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-12 12:38:18
+ * @Last Modified time: 2018-03-13 11:58:56
  */
 
 <template>
@@ -30,17 +30,9 @@ export default {
       //跳转到登录页
       this.$router.push({ path: "/pages/Login" });
     } else {
-      this.$http
-        .get("./static/mock/classroomList.json")
-        .then(response => {})
-        .catch(error => {
-          console.log(error);
-        });
     }
   },
-  methods: {
-    
-  }
+  methods: {}
 };
 </script>
 
@@ -50,7 +42,7 @@ export default {
   width: 100%;
   min-height: 100vh;
   padding-bottom: 2rem;
-  
+
   .submit {
     width: 11.25rem;
     height: 1.5rem;

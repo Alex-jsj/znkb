@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:42:39 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-12 17:21:36
+ * @Last Modified time: 2018-03-13 12:14:14
  */
 <template>
   <div class="login">
@@ -99,13 +99,16 @@ export default {
     formSubmit: function() {
       var that = this;
       if (this.userTest && this.psdTest) {
+        var d = { name: this.user, password: this.password };
         //验证通过
         this.$http({
           method: "get",
+          // url: "/Admin/Login/logTodo",
+          // url: "http://demo3.q-huan.com/Admin/Login/logTodo",
           url: "./static/mock/login.json",
-          data: {},
+          data: d,
           //格式化
-          transformRequest: [
+          /* transformRequest: [
             function(data) {
               var ret = "";
               for (var i = 0; i < data.length; i++) {
@@ -118,7 +121,7 @@ export default {
               ret = ret.slice(0, -1); // 去掉最后的空行
               return ret;
             }
-          ],
+          ], */
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
           }
@@ -129,6 +132,7 @@ export default {
               //提交成功后跳转到首面
               that.$router.push({ path: "/pages/Home" });
             }
+            console.log(response);
           })
           .catch(error => {
             console.log(error);

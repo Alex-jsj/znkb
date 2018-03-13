@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-12 10:06:43 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-12 12:37:41
+ * @Last Modified time: 2018-03-13 12:20:52
  */
 
 <template>
@@ -15,13 +15,12 @@
     </ul>
     <!-- 提交按钮 -->
     <div class="submit">
-      <router-link to="/pages/classroom/classroom/reservationInfo">
-        <p class="submit-btn">确&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</p>
-      </router-link>
+      <p class="submit-btn" @click="clooseClassroom()">确&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</p>
     </div>
   </div>
 </template>
 <script>
+import { MessageBox } from "mint-ui";
 export default {
   name: "classroomReservation",
   data() {
@@ -56,6 +55,21 @@ export default {
       }
       this.classroom_list[idx].cloose = true;
       this.this_cloose = this.classroom_list[idx].classroom_id;
+    },
+    clooseClassroom: function() {
+      for (let i = 0; i < this.classroom_list.length; i++) {
+        if (this.classroom_list[i].cloose) {
+          //如果有选中的教室，则跳转到下个页面继续预约
+          this.$router.push({
+            path: "/pages/classroom/classroom/reservationInfo"
+          });
+          break;
+        } else {
+          if (i == this.classroom_list.length - 1) {
+            MessageBox("提示", "请先选择教室");
+          }
+        }
+      }
     }
   }
 };
