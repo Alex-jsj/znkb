@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:43:09 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-12 12:37:27
+ * @Last Modified time: 2018-03-13 18:04:28
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -48,6 +48,7 @@ export default new Router({
             component: classroom,
             children: [{
                     path: '/',
+                    redirect: 'classroomReservation',
                     component: classroomReservation
                 },
                 {

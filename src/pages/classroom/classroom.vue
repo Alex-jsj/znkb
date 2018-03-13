@@ -2,19 +2,13 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-12 10:06:43 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-13 17:47:54
+ * @Last Modified time: 2018-03-13 18:05:38
  */
 
 <template>
   <div class="classroom">
     <!-- title switch -->
-    <ul class="title-switch">
-      <li v-for="(item,index) in switchList" :key="item.id" class="float-left" @click="showItem(index)" :class="{'show':item.show}">
-        <router-link :to="'/pages/classroom/classroom/'+item.url">
-          <p class="float-left switch-text">{{item.title}}</p>
-        </router-link>
-      </li>
-    </ul>
+    <SwitchBar :switchList="switchList"></SwitchBar>
     <!-- view -->
     <router-view></router-view>
     <!-- 底部菜单 -->
@@ -24,6 +18,7 @@
 <script>
 /* 引入组件 */
 import Menu from "@/components/Menu";
+import SwitchBar from "@/components/SwitchBar";
 export default {
   name: "classroom",
   data() {
@@ -31,19 +26,20 @@ export default {
       switchList: [
         {
           title: "教室预约",
-          url: "classroomReservation",
-          show: true
+          url: "/pages/classroom/classroom/classroomReservation",
+          show: false
         },
         {
           title: "预约记录",
-          url: "reservationRecord",
+          url: "/pages/classroom/classroom/reservationRecord",
           show: false
         }
       ]
     };
   },
   components: {
-    Menu
+    Menu,
+    SwitchBar
   },
   mounted: function() {
     //修改页面title
@@ -55,14 +51,7 @@ export default {
     } else {
     }
   },
-  methods: {
-    showItem: function(idx) {
-      for (let i = 0; i < this.switchList.length; i++) {
-        this.switchList[i].show = false;
-      }
-      this.switchList[idx].show = true;
-    }
-  }
+  methods: {}
 };
 </script>
 
@@ -73,43 +62,5 @@ export default {
   min-height: 100vh;
   padding-bottom: 2rem;
   background: #f2f2f2;
-  .title-switch {
-    width: 100%;
-    height: 1.75rem;
-    background: #fff;
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
-    > li {
-      width: 50%;
-      height: 100%;
-    }
-    .switch-text {
-      display: block;
-      width: 8rem;
-      line-height: 1.75rem;
-      text-align: center;
-      font-size: 0.65rem;
-      color: #808080;
-      letter-spacing: 0.05rem;
-      position: relative;
-      &::after {
-        content: "";
-        display: none;
-        width: 100%;
-        height: 0.08rem;
-        background: #cb121b;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-      }
-    }
-    .show {
-      .switch-text {
-        color: #cb121b;
-        &::after {
-          display: block;
-        }
-      }
-    }
-  }
 }
 </style>

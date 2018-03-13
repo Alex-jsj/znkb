@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-12 10:06:43 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-13 17:45:19
+ * @Last Modified time: 2018-03-13 17:50:20
  */
 
 <template>
@@ -329,9 +329,9 @@ export default {
           //验证通过
           that
             .$http({
-              method: "post",
-              url: "/Admin/Login/logTodo",
-              // url: "./static/mock/login.json",
+              method: "get",
+              // url: "/Admin/Login/logTodo",
+              url: "./static/mock/login.json",
               data: {
                 startDate: that.startDate, //开始时间
                 endDate: that.endDate, //结束时间
@@ -374,7 +374,7 @@ export default {
               let instance = Toast("提交失败");
               setTimeout(() => {
                 instance.close();
-              }, 500);
+              }, 1000);
               //提交失败则重新开放登录按钮
               that.submit_btn = true;
               console.log(error);
