@@ -1,0 +1,81 @@
+[{
+        "applicationTime": "2018-01-01",
+        "useDateStart": "01/01",
+        "useDateEnd": "01/02",
+        "useClassStart": "第一节",
+        "useClassEnd": "第二节",
+        "classroom": "a#101",
+        "status": "审核中",
+        "statusId": 1
+    },
+    {
+        "applicationTime": "2018-01-01",
+        "useDateStart": "01/01",
+        "useDateEnd": "01/02",
+        "useClassStart": "第一节",
+        "useClassEnd": "第二节",
+        "classroom": "a#102",
+        "status": "已通过",
+        "statusId": 2
+    },
+    {
+        "applicationTime": "2018-01-01",
+        "useDateStart": "01/01",
+        "useDateEnd": "01/02",
+        "useClassStart": "第一节",
+        "useClassEnd": "第二节",
+        "classroom": "a#103",
+        "status": "已通过",
+        "statusId": 2
+    },
+    {
+        "applicationTime": "2018-01-01",
+        "useDateStart": "01/01",
+        "useDateEnd": "01/02",
+        "useClassStart": "第一节",
+        "useClassEnd": "第二节",
+        "classroom": "a#102",
+        "status": "已驳回",
+        "statusId": 3
+    },
+    {
+        "applicationTime": "2018-01-01",
+        "useDateStart": "01/01",
+        "useDateEnd": "01/02",
+        "useClassStart": "第一节",
+        "useClassEnd": "第二节",
+        "classroom": "b#101",
+        "status": "审核中",
+        "statusId": 1
+    },
+    {
+        "applicationTime": "2018-01-01",
+        "useDateStart": "01/01",
+        "useDateEnd": "01/02",
+        "useClassStart": "第一节",
+        "useClassEnd": "第二节",
+        "classroom": "b#101",
+        "status": "已通过",
+        "statusId": 2
+    },
+    {
+        "applicationTime": "2018-01-01",
+        "useDateStart": "01/01",
+        "useDateEnd": "01/02",
+        "useClassStart": "第一节",
+        "useClassEnd": "第二节",
+        "classroom": "a#101",
+        "status": "审核中",
+        "statusId": 1
+    },
+    {
+        "applicationTime": "2018-01-01",
+        "useDateStart": "01/01",
+        "useDateEnd": "01/02",
+        "useClassStart": "第一节",
+        "useClassEnd": "第二节",
+        "classroom": "a#101",
+        "status": "审核中",
+        "statusId": 1
+    }
+]
