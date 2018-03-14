@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-12 10:06:43 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-13 18:05:38
+ * @Last Modified time: 2018-03-14 17:04:16
  */
 
 <template>
@@ -12,7 +12,7 @@
     <!-- view -->
     <router-view></router-view>
     <!-- 底部菜单 -->
-    <Menu></Menu>
+    <Menu :linkActive="linkActive"></Menu>
   </div>
 </template>
 <script>
@@ -23,6 +23,7 @@ export default {
   name: "classroom",
   data() {
     return {
+      linkActive: 5, //菜单定位
       switchList: [
         {
           title: "教室预约",

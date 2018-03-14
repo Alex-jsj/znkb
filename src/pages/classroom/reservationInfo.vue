@@ -2,13 +2,15 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-12 10:06:43 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-14 16:49:30
+ * @Last Modified time: 2018-03-14 17:11:51
  */
 
 <template>
   <div class="reservationInfo">
     <!-- 伪红线 -->
-    <i class="red-line"></i>
+    <div class="mock-active">
+      <span>教室预约</span>
+    </div>
     <!-- form -->
     <div class="form">
       <div class="form-item">
@@ -394,15 +396,29 @@ export default {
   width: 100%;
   position: relative;
   padding-top: 1.75rem;
-  .red-line {
+  .mock-active {
+    width: 8rem;
+    height: 1.75rem;
+    background: #fff;
     position: absolute;
-    top: -0.08rem;
+    top: -1.75rem;
     left: 0;
     z-index: 999;
-    display: block;
-    width: 8rem;
-    height: 0.08rem;
-    background: #cb121b;
+    line-height: 1.75rem;
+    text-align: center;
+    font-size: 0.65rem;
+    color: #cb121b;
+    letter-spacing: 0.05rem;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0.08rem;
+      background: #cb121b;
+    }
   }
   .form {
     width: 100%;
