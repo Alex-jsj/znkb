@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-12 10:05:29
+ * @Last Modified time: 2018-03-14 10:42:09
  */
 
 <template>
@@ -47,7 +47,7 @@ export default {
         {
           title: "请假",
           icon: "icon-qingjia",
-          link: "/pages/qingjia",
+          link: "/pages/studentsLeave/studentsLeave",
           active: false
         },
         {
