@@ -2,11 +2,13 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-12 10:06:43 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-13 17:50:20
+ * @Last Modified time: 2018-03-14 16:49:30
  */
 
 <template>
   <div class="reservationInfo">
+    <!-- 伪红线 -->
+    <i class="red-line"></i>
     <!-- form -->
     <div class="form">
       <div class="form-item">
@@ -390,12 +392,22 @@ export default {
 <style scoped lang="less">
 .reservationInfo {
   width: 100%;
-  overflow: hidden;
+  position: relative;
+  padding-top: 1.75rem;
+  .red-line {
+    position: absolute;
+    top: -0.08rem;
+    left: 0;
+    z-index: 999;
+    display: block;
+    width: 8rem;
+    height: 0.08rem;
+    background: #cb121b;
+  }
   .form {
     width: 100%;
     padding: 0 1.25rem;
     margin: 0 auto;
-    margin-top: 1.75rem;
     .form-item {
       width: 100%;
       margin-bottom: 0.55rem;

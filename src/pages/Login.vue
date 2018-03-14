@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:42:39 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-13 17:27:44
+ * @Last Modified time: 2018-03-14 14:58:49
  */
 <template>
   <div class="login">
@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import Qs from "qs";
+import { MessageBox, Toast } from "mint-ui";
 export default {
   name: "Login",
   data() {
@@ -51,7 +51,7 @@ export default {
       password: "",
       psdErr: "",
       psdTest: false,
-      userToken: ""
+      canSubmit: true
     };
   },
   mounted: function() {
@@ -99,14 +99,13 @@ export default {
     //提交
     formSubmit: function() {
       var that = this;
-      if (this.userTest && this.psdTest) {
+      if (this.userTest && this.psdTest && that.canSubmit) {
         //验证通过
         this.$http({
-          method: "get",
-          // url: "/Admin/Login/logTodo",
-          url: "./static/mock/login.json",
+          method: "post",
+          url: "/Home/Index/login",
           data: {
-            name: this.user,
+            student_num: this.user,
             password: this.password
           },
           headers: {
@@ -128,14 +127,27 @@ export default {
           ]
         })
           .then(response => {
-            localStorage.setItem("userToken", response.data.token);
-            if (response.data.status == "001") {
-              //提交成功后跳转到首面
-              that.$router.push({ path: "/pages/Home" });
+            console.log(response.data)
+            if (response.data.code == 1) {
+              //防止重复提交
+              that.canSubmit = false;
+              let instance = Toast("登录成功");
+              localStorage.setItem("student_num", that.user);
+              localStorage.setItem("userToken", response.data.token);
+              setTimeout(() => {
+                instance.close();
+                that.$router.push({ path: "/pages/Home" });
+              }, 500);
+            } else if (response.data.code == 2) {
+              MessageBox("提示", "账户不存在，请核对后再试！");
+            } else if (response.data.code == 3) {
+              MessageBox("提示", "密码错误！");
+            } else {
+              MessageBox("提示", "登陆失败！");
             }
-            // console.log(response);
           })
           .catch(error => {
+            MessageBox("提示", "登陆失败！");
             console.log(error);
           });
       } else {

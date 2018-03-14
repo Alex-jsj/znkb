@@ -11,11 +11,11 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            '/Admin': {
-                target: 'http://demo3.q-huan.com/Admin',
+            '/Home': {
+                target: 'http://demo3.q-huan.com/Home',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/Admin': ''
+                    '^/Home': ''
                 }
             }
         },
