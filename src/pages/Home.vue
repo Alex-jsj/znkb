@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
- * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-14 10:39:19
+ * @Last Modified by: alex (chenzeyongjsj@163.com)
+ * @Last Modified time: 2018-03-17 17:41:07
  */
 
 <template>
@@ -112,7 +112,7 @@ export default {
           img_src: "./static/img/icon6.png",
           img_class: "menu-icon",
           menu_title: "我要并课",
-          menu_link: "/",
+          menu_link: "/pages/andClass/andClass",
           new_message: false
         },
         {
@@ -163,7 +163,7 @@ export default {
           img_src: "./static/img/icon6-6.png",
           img_class: "menu-icon",
           menu_title: "我要并课",
-          menu_link: "/",
+          menu_link: "/pages/andClass/andClass",
           new_message: false
         },
         {

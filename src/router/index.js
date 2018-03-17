@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:43:09 
- * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-14 11:12:41
+ * @Last Modified by: alex (chenzeyongjsj@163.com)
+ * @Last Modified time: 2018-03-17 18:00:31
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -17,6 +17,8 @@ import reservationInfo from '@/pages/classroom/reservationInfo' //预约记录
 import reservationRecord from '@/pages/classroom/reservationRecord' //预约记录
 import studentsLeave from '@/pages/studentsLeave/studentsLeave' //学生请假
 import leaveInfo from '@/pages/studentsLeave/leaveInfo' //学生请假详情页
+import andClass from '@/pages/andClass/andClass' //并课申请
+import andClassApply from '@/pages/andClass/andClassApply' //并课申请
 
 Vue.use(Router)
 
@@ -52,6 +54,20 @@ export default new Router({
         {
             path: '/pages/studentsLeave/leaveInfo',
             component: leaveInfo,
+        },
+        {
+            path: '/pages/andClass/andClass',
+            component: andClass,
+            children: [{
+                    path: '/',
+                    redirect: 'andClassApply',
+                    component: andClassApply
+                },
+                {
+                    path: 'andClassApply',
+                    component: andClassApply
+                },
+            ]
         },
         {
             path: '/pages/classroom/classroom',
