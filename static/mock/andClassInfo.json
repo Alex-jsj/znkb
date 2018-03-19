@@ -1,0 +1,19 @@
+{
+    "applyDate": "2018-01-31",
+    "myclassname": "家具设计",
+    "mydate": "第五周 星期五 1、2节",
+    "myclass": "14产品2班",
+    "myplace": "a#101",
+    "toclassname": "家具设计",
+    "todate": "第五周 星期五 3、4节",
+    "toclass": "14产品3班",
+    "toplace": "b#101",
+    "examineTeacher": "李某某",
+    "examineTeacher_uid": 1,
+    "department": 2,
+    "college": 0,
+    "receipt": "已通过",
+    "classTime": "第五周 星期五 3、4节",
+    "classPlace": "c#101",
+    "reason": "老师出差参加研讨会"
+}

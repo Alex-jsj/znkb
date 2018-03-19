@@ -2,12 +2,12 @@
  * @Author: alex (chenzeyongjsj@163.com) 
  * @Date: 2018-03-17 17:39:42 
  * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-19 06:10:59
+ * @Last Modified time: 2018-03-19 08:30:47
  */
 
 
 <template>
-  <div class="andClass">
+  <div class="adjustmentClass">
     <!-- title switch -->
     <SwitchBar :switchList="switchList"></SwitchBar>
     <!-- view -->
@@ -21,19 +21,19 @@
 import Menu from "@/components/Menu";
 import SwitchBar from "@/components/SwitchBar";
 export default {
-  name: "andClass",
+  name: "adjustmentClass",
   data() {
     return {
       linkActive: 5, //菜单定位
       switchList: [
         {
-          title: "并课申请",
-          url: "/pages/andClass/andClass/andClassApply",
+          title: "调课申请",
+          url: "/pages/adjustmentClass/adjustmentClass/adjustmentClassApply",
           show: false
         },
         {
-          title: "并课记录",
-          url: "/pages/andClass/andClass/andClassRecord",
+          title: "调课记录",
+          url: "/pages/adjustmentClass/adjustmentClass/adjustmentClassRecord",
           show: false
         }
       ]
@@ -45,7 +45,7 @@ export default {
   },
   mounted: function() {
     //修改页面title
-    document.title = "并课申请";
+    document.title = "调课申请";
     //判断登录状态
     if (!localStorage.getItem("userToken")) {
       //跳转到登录页
@@ -59,7 +59,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-.andClass {
+.adjustmentClass {
   width: 100%;
   min-height: 100vh;
   padding-bottom: 2rem;

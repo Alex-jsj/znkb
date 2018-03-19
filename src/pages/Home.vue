@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
  * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-17 17:41:07
+ * @Last Modified time: 2018-03-19 08:29:28
  */
 
 <template>
@@ -105,7 +105,7 @@ export default {
           img_src: "./static/img/icon5.png",
           img_class: "menu-icon",
           menu_title: "我要调课",
-          menu_link: "/",
+          menu_link: "/pages/adjustmentClass/adjustmentClass",
           new_message: false
         },
         {
@@ -156,7 +156,7 @@ export default {
           img_src: "./static/img/icon5-5.png",
           img_class: "menu-icon",
           menu_title: "我要调课",
-          menu_link: "/",
+          menu_link: "/pages/adjustmentClass/adjustmentClass",
           new_message: false
         },
         {

@@ -2,17 +2,17 @@
  * @Author: alex (chenzeyongjsj@163.com) 
  * @Date: 2018-03-17 18:01:19 
  * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-19 06:10:32
+ * @Last Modified time: 2018-03-19 08:32:34
  */
 
 
 <template>
-  <div class="andClassApply">
+  <div class="adjustmentClassApply">
     <!-- form -->
     <div class="form">
       <!-- 己方 -->
       <div class="form-item">
-        <span class="item-title float-left">并课课程：</span>
+        <span class="item-title float-left">调课课程：</span>
         <div class="item-container float-right">
           <select class="picker-select" v-model="myClass" @change="selectChecked()">
             <option v-for="item in myClassList" :key="item.id" :value="item">{{item.title}}</option>
@@ -88,7 +88,7 @@
         </div>
       </div>
       <div class="form-item">
-        <span class="item-title float-left">并课事由：</span>
+        <span class="item-title float-left">调课事由：</span>
         <div class="item-container3 float-right">
           <textarea class="textarea" rows="5" v-model="remarks"></textarea>
         </div>
@@ -103,7 +103,7 @@
 <script>
 import { MessageBox, Toast } from "mint-ui";
 export default {
-  name: "andClassApply",
+  name: "adjustmentClassApply",
   data() {
     return {
       // 登录信息
@@ -133,7 +133,7 @@ export default {
   },
   mounted: function() {
     //修改页面title
-    document.title = "并课申请";
+    document.title = "调课申请";
     //判断登录状态
     if (!localStorage.getItem("userToken")) {
       //跳转到登录页
@@ -337,7 +337,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-.andClassApply {
+.adjustmentClassApply {
   width: 100%;
   position: relative;
   padding-top: 1.75rem;

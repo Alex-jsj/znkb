@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-12 10:06:43 
- * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-13 19:12:49
+ * @Last Modified by: alex (chenzeyongjsj@163.com)
+ * @Last Modified time: 2018-03-19 06:29:17
  */
 
 <template>
@@ -15,7 +15,7 @@
       <span class="float-left width-4">状态</span>
       <!-- <span class="float-left width-5">操作</span> -->
     </div>
-    <div class="list">
+    <div>
       <ul class="list" v-infinite-scroll="loadMore" infinite-scroll-immediate-check="true" infinite-scroll-disabled="loading" infinite-scroll-distance="0">
         <li v-for="(item,index) in reservation_record" :key="index">
           <div class="width-1 float-left list-item">{{item.applicationTime}}</div>

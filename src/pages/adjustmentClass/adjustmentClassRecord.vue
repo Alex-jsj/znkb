@@ -2,63 +2,56 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-12 10:06:43 
  * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-19 06:29:31
+ * @Last Modified time: 2018-03-19 08:34:45
  */
 
 <template>
-  <div class="studentsLeave">
+  <div class="adjustmentClassRecord">
     <!-- table -->
     <div class="title">
-      <span class="float-left width-1">申请时间</span>
-      <span class="float-left width-2">使用时间</span>
+      <span class="float-left width-1">发起方</span>
+      <span class="float-left width-2">时间</span>
       <span class="float-left width-3">状态</span>
-      <span class="float-left width-4">操作</span>
+      <span class="float-left width-5">操作</span>
     </div>
     <div>
       <ul class="list" v-infinite-scroll="loadMore" infinite-scroll-immediate-check="true" infinite-scroll-disabled="loading" infinite-scroll-distance="0">
-        <li v-for="(item,index) in leaveList" :key="index">
-          <div class="width-1 float-left list-item">{{item.applicationTime}}</div>
-          <div class="width-2 float-left list-item item-2">
-            <p class="record-date">{{item.name}}</p>
-            <p class="record-date">{{item.classroom}}</p>
+        <li v-for="(item,index) in andClass_record" :key="index">
+          <div class="width-1 float-left list-item">{{item.Initiator}}</div>
+          <div class="width-2 float-left list-item">
+            <p class="record-date">{{item.date}}</p>
           </div>
           <div class="width-3 float-left list-item" :class="item.statusClass">{{item.status}}</div>
-          <div class="width-4 float-left list-item">
-            <router-link to="/pages/studentsLeave/leaveInfo" class="info">查看</router-link>
+          <div class="width-5 float-left list-item" @click="intoInfo()">
+            <span class="info">查看</span>
           </div>
         </li>
       </ul>
     </div>
-    <!-- 底部菜单 -->
-    <Menu :linkActive="linkActive"></Menu>
   </div>
 </template>
 <script>
 //引入loading组件
 import { Indicator } from "mint-ui";
-import Menu from "@/components/Menu";
 export default {
-  name: "studentsLeave",
+  name: "adjustmentClassRecord",
   data() {
     return {
-      linkActive: 3, //菜单定位
-      leaveList: [],
+      andClass_record: [],
       loading: false
     };
   },
-  components: {
-    Menu
-  },
+  components: {},
   mounted: function() {
     //修改页面title
-    document.title = "学生请假";
+    document.title = "调课记录";
     //判断登录状态
     if (!localStorage.getItem("userToken")) {
       //跳转到登录页
       this.$router.push({ path: "/pages/Login" });
     } else {
       this.$http
-        .get("./static/mock/leaveList.json")
+        .get("./static/mock/andClassRecord.json")
         .then(response => {
           for (let i = 0; i < response.data.length; i++) {
             if (response.data[i].statusId == 1) {
@@ -69,7 +62,7 @@ export default {
               response.data[i].statusClass = "bohui";
             }
           }
-          this.leaveList = response.data;
+          this.andClass_record = response.data;
         })
         .catch(error => {
           console.log(error);
@@ -77,6 +70,10 @@ export default {
     }
   },
   methods: {
+    //进入详情页
+    intoInfo() {
+      this.$router.push({ path: "/pages/adjustmentClass/adjustmentClassInfo" });
+    },
     loadMore() {
       // 防止多次加载
       if (this.loading) {
@@ -88,7 +85,7 @@ export default {
         spinnerType: "fading-circle"
       });
       this.$http
-        .get("./static/mock/leaveList.json")
+        .get("./static/mock/andClassRecord.json")
         .then(response => {
           for (let i = 0; i < response.data.length; i++) {
             if (response.data[i].statusId == 1) {
@@ -98,7 +95,7 @@ export default {
             } else if (response.data[i].statusId == 3) {
               response.data[i].statusClass = "bohui";
             }
-            this.leaveList.push(response.data[i]);
+            this.andClass_record.push(response.data[i]);
           }
           this.loading = false;
           Indicator.close();
@@ -113,7 +110,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-.studentsLeave {
+.adjustmentClassRecord {
   width: 100%;
   padding-bottom: 2rem;
   .title {
@@ -157,14 +154,6 @@ export default {
           color: #808080;
         }
       }
-      .item-2 {
-        padding-top: 0.6rem;
-        .record-date {
-          white-space: nowrap;
-          line-height: 1.15rem;
-          font-size: 0.6rem;
-        }
-      }
       .shenghe {
         color: #808080;
       }
@@ -186,6 +175,9 @@ export default {
     width: 3.5rem;
   }
   .width-4 {
+    width: 2.95rem;
+  }
+  .width-5 {
     width: 2.95rem;
   }
 }
