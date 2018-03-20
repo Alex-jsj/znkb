@@ -1,446 +1,113 @@
 [{
-        "class_list": [{
-
-            },
-            {
-                "time": "8:30",
-                "class_number": 1
-            },
-            {
-                "time": "9:20",
-                "class_number": 2
-            },
-            {
-                "time": "10:10",
-                "class_number": 4
-            },
-            {
-                "time": "11:00",
-                "class_number": 4
-            },
-            {
-                "time": "13:30",
-                "class_number": 5
-            },
-            {
-                "time": "14:20",
-                "class_number": 6
-            },
-            {
-                "time": "15:20",
-                "class_number": 7
-            },
-            {
-                "time": "16:10",
-                "class_number": 8
-            },
-            {
-                "time": "19:00",
-                "class_number": 9
-            },
-            {
-                "time": "20:40",
-                "class_number": 10
-            }
-        ]
+        "name": "老师名",
+        "date": [],
+        "first": ["8:30", 1],
+        "second": ["9:20", 2],
+        "thirdly": ["10:10", 3],
+        "fourthly": ["11:00", 4],
+        "fifth": ["13:30", 5],
+        "sixth": ["14:20", 6],
+        "seventh": ["15:20", 7],
+        "eighth": ["16:10", 8],
+        "ninth": ["19:00", 9],
+        "tenth": ["20:40", 10]
     },
     {
-        "class_list": [{
-                "week": "周一",
-                "date": "10/26"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            }
-        ]
+        "name": "老师名",
+        "date": ["周一", "10/26"],
+        "first": ["", null, null],
+        "second": ["", null, null],
+        "thirdly": ["", null, null],
+        "fourthly": ["", null, null],
+        "fifth": ["14产品3班", "工业设计导论", "a#101"],
+        "sixth": ["14产品3班", "工业设计导论", "a#101"],
+        "seventh": ["14产品3班", "工业设计导论", "a#101"],
+        "eighth": ["", null, null],
+        "ninth": ["", null, null],
+        "tenth": ["", null, null]
     },
     {
-        "class_list": [{
-                "week": "周一",
-                "date": "10/26"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            }
-        ]
+        "name": "老师名",
+        "date": ["周二", "10/27"],
+        "first": ["", null, null],
+        "second": ["14产品3班", "工业设计导论", "a#101"],
+        "thirdly": ["14产品3班", "工业设计导论", "a#101"],
+        "fourthly": ["", null, null],
+        "fifth": ["", null, null],
+        "sixth": ["", null, null],
+        "seventh": ["", null, null],
+        "eighth": ["", null, null],
+        "ninth": ["", null, null],
+        "tenth": ["", null, null]
     },
     {
-        "class_list": [{
-                "week": "周一",
-                "date": "10/26"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            }
-        ]
+        "name": "老师名",
+        "date": ["周三", "10/28"],
+        "first": ["14产品3班", "机械制图+CAD", "a#101"],
+        "second": ["", null, null],
+        "thirdly": ["", null, null],
+        "fourthly": ["", null, null],
+        "fifth": ["", null, null],
+        "sixth": ["", null, null],
+        "seventh": ["", null, null],
+        "eighth": ["14产品3班", "机械制图+CAD+工业设计导论", "a#101"],
+        "ninth": ["", null, null],
+        "tenth": ["", null, null]
     },
     {
-        "class_list": [{
-                "week": "周一",
-                "date": "10/26"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            }
-        ]
+        "name": "老师名",
+        "date": ["周四", "10/29"],
+        "first": ["", null, null],
+        "second": ["14产品3班", "机械制图+CAD", "a#101"],
+        "thirdly": ["14产品3班", "机械制图+CAD", "a#101"],
+        "fourthly": ["14产品3班", "机械制图+CAD", "a#101"],
+        "fifth": ["", null, null],
+        "sixth": ["", null, null],
+        "seventh": ["", null, null],
+        "eighth": ["", null, null],
+        "ninth": ["", null, null],
+        "tenth": ["", null, null]
     },
     {
-        "class_list": [{
-                "week": "周一",
-                "date": "10/26"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            }
-        ]
+        "name": "老师名",
+        "date": ["周五", "10/30"],
+        "first": ["", null, null],
+        "second": ["", null, null],
+        "thirdly": ["", null, null],
+        "fourthly": ["", null, null],
+        "fifth": ["", null, null],
+        "sixth": ["", null, null],
+        "seventh": ["", null, null],
+        "eighth": ["14产品3班", "工业设计导论", "a#101"],
+        "ninth": ["14产品3班", "工业设计导论", "a#101"],
+        "tenth": ["", null, null]
     },
     {
-        "class_list": [{
-                "week": "周一",
-                "date": "10/26"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            }
-        ]
+        "name": "老师名",
+        "date": ["周六", "11/01"],
+        "first": ["", null, null],
+        "second": ["", null, null],
+        "thirdly": ["", null, null],
+        "fourthly": ["", null, null],
+        "fifth": ["", null, null],
+        "sixth": ["", null, null],
+        "seventh": ["", null, null],
+        "eighth": [null, null, null],
+        "ninth": ["", null, null],
+        "tenth": ["", null, null]
     },
     {
-        "class_list": [{
-                "week": "周一",
-                "date": "10/26"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "14产品3班",
-                "curriculum": "工业设计导论",
-                "place": "a#101"
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "",
-                "curriculum": "",
-                "place": ""
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            },
-            {
-                "class": "14产品2班",
-                "curriculum": "图形设计",
-                "place": "b#102"
-            }
-        ]
+        "name": "老师名",
+        "date": ["周日", "11/02"],
+        "first": ["", null, null],
+        "second": ["", null, null],
+        "thirdly": ["", null, null],
+        "fourthly": ["", null, null],
+        "fifth": ["", null, null],
+        "sixth": ["", null, null],
+        "seventh": ["", null, null],
+        "eighth": [null, null, null],
+        "ninth": ["", null, null],
+        "tenth": ["", null, null]
     }
 ]

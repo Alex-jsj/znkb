@@ -2,7 +2,7 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-09 15:39:28
+ * @Last Modified time: 2018-03-20 18:33:06
  */
 
 <template>
@@ -30,15 +30,77 @@
     </div>
     <!-- 课表 -->
     <div class="timetable">
-      <div class="header"></div>
+      <!-- <div class="header"></div>
       <div class="container">
         <div class="overflow-container">
-          <!-- 课程时间 -->
           <ul class="list-item float-left" v-for="(list,index) in myTimeTableList" :key="list.id">
-            <li class="item" v-for="(item,index) in list.class_list"></li>
+            <li class="item item-header">
+              <p class="week">{{list.date[0]}}</p>
+              <p class="week-date">{{list.date[1]}}</p>
+            </li>
+            <li class="item">
+              <p class="first">{{list.first[0]}}</p>
+              <p class="second">{{list.first[1]}}</p>
+              <p>{{list.first[2]}}</p>
+            </li>
+            <li class="item">
+              <p class="first">{{list.second[0]}}</p>
+              <p class="second">{{list.second[1]}}</p>
+              <p>{{list.second[2]}}</p>
+            </li>
+            <li class="item">
+              <p class="first">{{list.thirdly[0]}}</p>
+              <p class="second">{{list.thirdly[1]}}</p>
+              <p>{{list.thirdly[2]}}</p>
+            </li>
+            <li class="item">
+              <p class="first">{{list.fourthly[0]}}</p>
+              <p class="second">{{list.fourthly[1]}}</p>
+              <p>{{list.fourthly[2]}}</p>
+            </li>
+            <li class="item">
+              <p class="first">{{list.fifth[0]}}</p>
+              <p class="second">{{list.fifth[1]}}</p>
+              <p>{{list.fifth[2]}}</p>
+            </li>
+            <li class="item">
+              <p class="first">{{list.sixth[0]}}</p>
+              <p class="second">{{list.sixth[1]}}</p>
+              <p>{{list.sixth[2]}}</p>
+            </li>
+            <li class="item">
+              <p class="first">{{list.seventh[0]}}</p>
+              <p class="second">{{list.seventh[1]}}</p>
+              <p>{{list.seventh[2]}}</p>
+            </li>
+            <li class="item">
+              <p class="first">{{list.eighth[0]}}</p>
+              <p class="second">{{list.eighth[1]}}</p>
+              <p>{{list.eighth[2]}}</p>
+            </li>
+            <li class="item">
+              <p class="first">{{list.ninth[0]}}</p>
+              <p class="second">{{list.ninth[1]}}</p>
+              <p>{{list.ninth[2]}}</p>
+            </li>
+            <li class="item">
+              <p class="first">{{list.tenth[0]}}</p>
+              <p class="second">{{list.tenth[1]}}</p>
+              <p>{{list.tenth[2]}}</p>
+            </li>
           </ul>
         </div>
-      </div>
+      </div> -->
+      <ul class="table-1">
+        <li class="item" v-for="list in time_table" :key="list.id">
+          <ol class="inter">
+            <li class="inter-item float-left" v-for="item in list">
+              <p>{{item[0]}}</p>
+              <p>{{item[1]}}</p>
+            </li>
+          </ol>
+        </li>
+      </ul>
     </div>
     <!-- 底部菜单 -->
     <Menu :linkActive="linkActive"></Menu>
@@ -53,6 +115,19 @@ export default {
     return {
       linkActive: 1,
       myTimeTableList: [],
+      time_table: [
+        [],
+        [[], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []]
+      ],
       filterList: [],
       //周次
       week: "",
@@ -88,6 +163,11 @@ export default {
           that.filterList = filter_list.data;
           that.week = that.filterList.week;
           that.class_filter = that.filterList.class;
+          for (let i = 0; i < my_timeTable.data.length; i++) {
+            console.log(my_timeTable.data[i].date);
+            //that.time_table[0].push(my_timeTable.data[i]);
+            that.time_table[0].push(my_timeTable.data[i].date);
+          }
         })
       );
     }
@@ -183,7 +263,7 @@ export default {
   .timetable {
     width: 100%;
     background: #fff;
-    .header {
+    /* .header {
       width: 100%;
       height: 2.25rem;
       box-shadow: 0 0.05rem 0.3rem rgba(0, 0, 0, 0.2);
@@ -209,19 +289,87 @@ export default {
           &:first-child {
             width: 2rem;
             background: #f2f2f2;
+            .item {
+              text-align: center;
+              padding: 0;
+              font-size: 0.6rem;
+              .first {
+                color: #b3b3b3;
+                font-size: 0.55rem;
+                margin-top: 1.1rem;
+              }
+              .second {
+                margin-top: 0.2rem;
+              }
+            }
           }
           .item {
             width: 100%;
             height: 3.75rem;
             border-bottom: 1px solid #ddd;
             border-right: 1px solid #ddd;
+            font-size: 0.5rem;
+            padding: 0.2rem;
+            overflow: hidden;
+            color: #808080;
             &:first-child {
               height: 2.25rem;
               border-bottom: 0 solid #ddd;
               border-right: 0 solid #ddd;
+              background: #fff;
+              padding: 0;
+              font-size: 0.6rem;
             }
             &:last-child {
               border-bottom: 0 solid #ddd;
+            }
+            .week {
+              margin-top: 0.4rem;
+            }
+            .week-date {
+              font-size: 0.45rem;
+              margin-top: 0.1rem;
+              color: #bebebe;
+            }
+          }
+          .item-header {
+            text-align: center;
+          }
+        }
+      }
+    } */
+    .table-1 {
+      width: 21.6rem;
+      .item {
+        width: 100%;
+        height: 3.75rem;
+        border-bottom: 1px solid #e7e7e7;
+        &:first-child {
+          height: 2.25rem;
+          box-shadow: 0 0.05rem 0.3rem rgba(0, 0, 0, 0.2);
+          border-bottom: 0 solid #e7e7e7;
+          .inter {
+            .inter-item {
+              border-right: 0 solid #e7e7e7;
+              &:first-child {
+                background: #fff;
+              }
+            }
+          }
+        }
+        &:last-child {
+          border-bottom: 0 solid #e7e7e7;
+        }
+        .inter {
+          width: 100%;
+          height: 100%;
+          .inter-item {
+            width: 2.8rem;
+            height: 100%;
+            border-right: 1px solid #e7e7e7;
+            &:first-child {
+              width: 2rem;
+              background: #f2f2f2;
             }
           }
         }
