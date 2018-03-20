@@ -29,6 +29,12 @@
       </div>
     </div>
     <!-- 课表 -->
+    <div class="timetable">
+      <div class="header"></div>
+      <div class="container">
+
+      </div>
+    </div>
     <!-- 底部菜单 -->
     <Menu :linkActive="linkActive"></Menu>
   </div>
@@ -101,6 +107,8 @@ export default {
     height: 1.75rem;
     background: #808080;
     overflow: hidden;
+    position: relative;
+    z-index: 999;
     .width-1 {
       width: 7.25rem;
       height: 100%;
@@ -165,6 +173,23 @@ export default {
         margin-left: 0.2rem;
         color: #fff;
       }
+    }
+  }
+  .timetable {
+    width: 100%;
+    .header {
+      width: 100%;
+      height: 2.25rem;
+      background: #fff;
+      box-shadow: 0 0.05rem 0.3rem rgba(0, 0, 0, 0.2);
+      padding-left: 2rem;
+      position: relative;
+      z-index: 998;
+    }
+    .container {
+      width: 100%;
+      height: 100vh;
+      background: #f2f2f2;
     }
   }
 }
