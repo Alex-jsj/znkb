@@ -32,7 +32,12 @@
     <div class="timetable">
       <div class="header"></div>
       <div class="container">
-
+        <div class="overflow-container">
+          <!-- 课程时间 -->
+          <ul class="list-item float-left" v-for="(list,index) in myTimeTableList" :key="list.id">
+            <li class="item" v-for="(item,index) in list.class_list"></li>
+          </ul>
+        </div>
       </div>
     </div>
     <!-- 底部菜单 -->
@@ -47,7 +52,7 @@ export default {
   data() {
     return {
       linkActive: 1,
-      myTimeTable: [],
+      myTimeTableList: [],
       filterList: [],
       //周次
       week: "",
@@ -79,7 +84,7 @@ export default {
       that.$http.all([myTimeTableList(), filterList()]).then(
         that.$http.spread(function(my_timeTable, filter_list) {
           // 两个请求现在都执行完成
-          that.myTimeTable = my_timeTable.data;
+          that.myTimeTableList = my_timeTable.data;
           that.filterList = filter_list.data;
           that.week = that.filterList.week;
           that.class_filter = that.filterList.class;
@@ -177,19 +182,50 @@ export default {
   }
   .timetable {
     width: 100%;
+    background: #fff;
     .header {
       width: 100%;
       height: 2.25rem;
-      background: #fff;
       box-shadow: 0 0.05rem 0.3rem rgba(0, 0, 0, 0.2);
-      padding-left: 2rem;
       position: relative;
       z-index: 998;
     }
     .container {
       width: 100%;
-      height: 100vh;
-      background: #f2f2f2;
+      background: #fff;
+      margin-top: -2.25rem;
+      overflow: hidden;
+      .overflow-container {
+        width: 21.6rem;
+        overflow-x: scroll;
+        &::after {
+          content: "";
+          display: block;
+          visibility: hidden;
+          clear: both;
+        }
+        .list-item {
+          width: 2.8rem;
+          &:first-child {
+            width: 2rem;
+            background: #f2f2f2;
+          }
+          .item {
+            width: 100%;
+            height: 3.75rem;
+            border-bottom: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            &:first-child {
+              height: 2.25rem;
+              border-bottom: 0 solid #ddd;
+              border-right: 0 solid #ddd;
+            }
+            &:last-child {
+              border-bottom: 0 solid #ddd;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -1,3 +1,446 @@
-[
-    
+[{
+        "class_list": [{
+
+            },
+            {
+                "time": "8:30",
+                "class_number": 1
+            },
+            {
+                "time": "9:20",
+                "class_number": 2
+            },
+            {
+                "time": "10:10",
+                "class_number": 4
+            },
+            {
+                "time": "11:00",
+                "class_number": 4
+            },
+            {
+                "time": "13:30",
+                "class_number": 5
+            },
+            {
+                "time": "14:20",
+                "class_number": 6
+            },
+            {
+                "time": "15:20",
+                "class_number": 7
+            },
+            {
+                "time": "16:10",
+                "class_number": 8
+            },
+            {
+                "time": "19:00",
+                "class_number": 9
+            },
+            {
+                "time": "20:40",
+                "class_number": 10
+            }
+        ]
+    },
+    {
+        "class_list": [{
+                "week": "周一",
+                "date": "10/26"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            }
+        ]
+    },
+    {
+        "class_list": [{
+                "week": "周一",
+                "date": "10/26"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            }
+        ]
+    },
+    {
+        "class_list": [{
+                "week": "周一",
+                "date": "10/26"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            }
+        ]
+    },
+    {
+        "class_list": [{
+                "week": "周一",
+                "date": "10/26"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            }
+        ]
+    },
+    {
+        "class_list": [{
+                "week": "周一",
+                "date": "10/26"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            }
+        ]
+    },
+    {
+        "class_list": [{
+                "week": "周一",
+                "date": "10/26"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            }
+        ]
+    },
+    {
+        "class_list": [{
+                "week": "周一",
+                "date": "10/26"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "14产品3班",
+                "curriculum": "工业设计导论",
+                "place": "a#101"
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "",
+                "curriculum": "",
+                "place": ""
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            },
+            {
+                "class": "14产品2班",
+                "curriculum": "图形设计",
+                "place": "b#102"
+            }
+        ]
+    }
 ]
