@@ -80,13 +80,13 @@ export default {
           menu_link: "/pages/myTimetable",
           new_message: false
         },
-        {
+        /* {
           img_src: "./static/img/icon2.png",
           img_class: "menu-icon icon2",
           menu_title: "学生考勤",
           menu_link: "/",
           new_message: false
-        },
+        }, */
         {
           img_src: "./static/img/icon3.png",
           img_class: "menu-icon icon3",
@@ -131,13 +131,13 @@ export default {
           menu_link: "/pages/myTimetable",
           new_message: false
         },
-        {
+        /* {
           img_src: "./static/img/icon2-2.png",
           img_class: "menu-icon icon2",
           menu_title: "学生考勤",
           menu_link: "/",
           new_message: false
-        },
+        }, */
         {
           img_src: "./static/img/icon3-3.png",
           img_class: "menu-icon icon3",

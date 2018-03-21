@@ -30,7 +30,7 @@
     </div>
     <!-- 课表 -->
     <div class="timetable">
-      <!-- <div class="header"></div>
+      <div class="header"></div>
       <div class="container">
         <div class="overflow-container">
           <ul class="list-item float-left" v-for="(list,index) in myTimeTableList" :key="list.id">
@@ -38,69 +38,59 @@
               <p class="week">{{list.date[0]}}</p>
               <p class="week-date">{{list.date[1]}}</p>
             </li>
-            <li class="item">
+            <li class="item" :class="{'bg':list.first[0]}">
               <p class="first">{{list.first[0]}}</p>
               <p class="second">{{list.first[1]}}</p>
               <p>{{list.first[2]}}</p>
             </li>
-            <li class="item">
+            <li class="item" :class="{'bg':list.second[0]}">
               <p class="first">{{list.second[0]}}</p>
               <p class="second">{{list.second[1]}}</p>
               <p>{{list.second[2]}}</p>
             </li>
-            <li class="item">
+            <li class="item" :class="{'bg':list.thirdly[0]}">
               <p class="first">{{list.thirdly[0]}}</p>
               <p class="second">{{list.thirdly[1]}}</p>
               <p>{{list.thirdly[2]}}</p>
             </li>
-            <li class="item">
+            <li class="item" :class="{'bg':list.fourthly[0]}">
               <p class="first">{{list.fourthly[0]}}</p>
               <p class="second">{{list.fourthly[1]}}</p>
               <p>{{list.fourthly[2]}}</p>
             </li>
-            <li class="item">
+            <li class="item" :class="{'bg':list.fifth[0]}">
               <p class="first">{{list.fifth[0]}}</p>
               <p class="second">{{list.fifth[1]}}</p>
               <p>{{list.fifth[2]}}</p>
             </li>
-            <li class="item">
+            <li class="item" :class="{'bg':list.sixth[0]}">
               <p class="first">{{list.sixth[0]}}</p>
               <p class="second">{{list.sixth[1]}}</p>
               <p>{{list.sixth[2]}}</p>
             </li>
-            <li class="item">
+            <li class="item" :class="{'bg':list.seventh[0]}">
               <p class="first">{{list.seventh[0]}}</p>
               <p class="second">{{list.seventh[1]}}</p>
               <p>{{list.seventh[2]}}</p>
             </li>
-            <li class="item">
+            <li class="item" :class="{'bg':list.eighth[0]}">
               <p class="first">{{list.eighth[0]}}</p>
               <p class="second">{{list.eighth[1]}}</p>
               <p>{{list.eighth[2]}}</p>
             </li>
-            <li class="item">
+            <li class="item" :class="{'bg':list.ninth[0]}">
               <p class="first">{{list.ninth[0]}}</p>
               <p class="second">{{list.ninth[1]}}</p>
               <p>{{list.ninth[2]}}</p>
             </li>
-            <li class="item">
+            <li class="item" :class="{'bg':list.tenth[0]}">
               <p class="first">{{list.tenth[0]}}</p>
               <p class="second">{{list.tenth[1]}}</p>
               <p>{{list.tenth[2]}}</p>
             </li>
           </ul>
         </div>
-      </div> -->
-      <ul class="table-1">
-        <li class="item" v-for="list in time_table" :key="list.id">
-          <ol class="inter">
-            <li class="inter-item float-left" v-for="item in list">
-              <p>{{item[0]}}</p>
-              <p>{{item[1]}}</p>
-            </li>
-          </ol>
-        </li>
-      </ul>
+      </div>
     </div>
     <!-- 底部菜单 -->
     <Menu :linkActive="linkActive"></Menu>
@@ -115,20 +105,8 @@ export default {
     return {
       linkActive: 1,
       myTimeTableList: [],
-      time_table: [
-        [],
-        [[], [], [], [], [], [], [], []],
-        [[], [], [], [], [], [], [], []],
-        [[], [], [], [], [], [], [], []],
-        [[], [], [], [], [], [], [], []],
-        [[], [], [], [], [], [], [], []],
-        [[], [], [], [], [], [], [], []],
-        [[], [], [], [], [], [], [], []],
-        [[], [], [], [], [], [], [], []],
-        [[], [], [], [], [], [], [], []],
-        [[], [], [], [], [], [], [], []]
-      ],
       filterList: [],
+      //time_table: [[], [], [], [], [], [], []],
       //周次
       week: "",
       //课程
@@ -163,11 +141,119 @@ export default {
           that.filterList = filter_list.data;
           that.week = that.filterList.week;
           that.class_filter = that.filterList.class;
-          for (let i = 0; i < my_timeTable.data.length; i++) {
-            console.log(my_timeTable.data[i].date);
-            //that.time_table[0].push(my_timeTable.data[i]);
-            that.time_table[0].push(my_timeTable.data[i].date);
+          /* for (let i = 0; i < my_timeTable.data.length; i++) {
+            if (i > 0) {
+              that.myTimeTableList[i].first.push(my_timeTable.data[0].first[1]);
+              that.myTimeTableList[i].second.push(
+                my_timeTable.data[0].second[1]
+              );
+              that.myTimeTableList[i].thirdly.push(
+                my_timeTable.data[0].thirdly[1]
+              );
+              that.myTimeTableList[i].fourthly.push(
+                my_timeTable.data[0].fourthly[1]
+              );
+              that.myTimeTableList[i].fifth.push(my_timeTable.data[0].fifth[1]);
+              that.myTimeTableList[i].sixth.push(my_timeTable.data[0].sixth[1]);
+              that.myTimeTableList[i].seventh.push(
+                my_timeTable.data[0].seventh[1]
+              );
+              that.myTimeTableList[i].eighth.push(
+                my_timeTable.data[0].eighth[1]
+              );
+              that.myTimeTableList[i].ninth.push(my_timeTable.data[0].ninth[1]);
+              that.myTimeTableList[i].tenth.push(my_timeTable.data[0].tenth[1]);
+            }
           }
+          //周一
+          that.time_table[0].push(that.myTimeTableList[1].first);
+          that.time_table[0].push(that.myTimeTableList[1].second);
+          that.time_table[0].push(that.myTimeTableList[1].thirdly);
+          that.time_table[0].push(that.myTimeTableList[1].fourthly);
+          that.time_table[0].push(that.myTimeTableList[1].fifth);
+          that.time_table[0].push(that.myTimeTableList[1].sixth);
+          that.time_table[0].push(that.myTimeTableList[1].seventh);
+          that.time_table[0].push(that.myTimeTableList[1].eighth);
+          that.time_table[0].push(that.myTimeTableList[1].ninth);
+          that.time_table[0].push(that.myTimeTableList[1].tenth);
+          //周二
+          that.time_table[1].push(that.myTimeTableList[2].first);
+          that.time_table[1].push(that.myTimeTableList[2].second);
+          that.time_table[1].push(that.myTimeTableList[2].thirdly);
+          that.time_table[1].push(that.myTimeTableList[2].fourthly);
+          that.time_table[1].push(that.myTimeTableList[2].fifth);
+          that.time_table[1].push(that.myTimeTableList[2].sixth);
+          that.time_table[1].push(that.myTimeTableList[2].seventh);
+          that.time_table[1].push(that.myTimeTableList[2].eighth);
+          that.time_table[1].push(that.myTimeTableList[2].ninth);
+          that.time_table[1].push(that.myTimeTableList[2].tenth);
+          //周二
+          that.time_table[2].push(that.myTimeTableList[3].first);
+          that.time_table[2].push(that.myTimeTableList[3].second);
+          that.time_table[2].push(that.myTimeTableList[3].thirdly);
+          that.time_table[2].push(that.myTimeTableList[3].fourthly);
+          that.time_table[2].push(that.myTimeTableList[3].fifth);
+          that.time_table[2].push(that.myTimeTableList[3].sixth);
+          that.time_table[2].push(that.myTimeTableList[3].seventh);
+          that.time_table[2].push(that.myTimeTableList[3].eighth);
+          that.time_table[2].push(that.myTimeTableList[3].ninth);
+          that.time_table[2].push(that.myTimeTableList[3].tenth);
+          //周二
+          that.time_table[3].push(that.myTimeTableList[4].first);
+          that.time_table[3].push(that.myTimeTableList[4].second);
+          that.time_table[3].push(that.myTimeTableList[4].thirdly);
+          that.time_table[3].push(that.myTimeTableList[4].fourthly);
+          that.time_table[3].push(that.myTimeTableList[4].fifth);
+          that.time_table[3].push(that.myTimeTableList[4].sixth);
+          that.time_table[3].push(that.myTimeTableList[4].seventh);
+          that.time_table[3].push(that.myTimeTableList[4].eighth);
+          that.time_table[3].push(that.myTimeTableList[4].ninth);
+          that.time_table[3].push(that.myTimeTableList[4].tenth);
+          //周二
+          that.time_table[4].push(that.myTimeTableList[5].first);
+          that.time_table[4].push(that.myTimeTableList[5].second);
+          that.time_table[4].push(that.myTimeTableList[5].thirdly);
+          that.time_table[4].push(that.myTimeTableList[5].fourthly);
+          that.time_table[4].push(that.myTimeTableList[5].fifth);
+          that.time_table[4].push(that.myTimeTableList[5].sixth);
+          that.time_table[4].push(that.myTimeTableList[5].seventh);
+          that.time_table[4].push(that.myTimeTableList[5].eighth);
+          that.time_table[4].push(that.myTimeTableList[5].ninth);
+          that.time_table[4].push(that.myTimeTableList[5].tenth);
+          //周二
+          that.time_table[5].push(that.myTimeTableList[6].first);
+          that.time_table[5].push(that.myTimeTableList[6].second);
+          that.time_table[5].push(that.myTimeTableList[6].thirdly);
+          that.time_table[5].push(that.myTimeTableList[6].fourthly);
+          that.time_table[5].push(that.myTimeTableList[6].fifth);
+          that.time_table[5].push(that.myTimeTableList[6].sixth);
+          that.time_table[5].push(that.myTimeTableList[6].seventh);
+          that.time_table[5].push(that.myTimeTableList[6].eighth);
+          that.time_table[5].push(that.myTimeTableList[6].ninth);
+          that.time_table[5].push(that.myTimeTableList[6].tenth);
+          //周日
+          that.time_table[6].push(that.myTimeTableList[7].first);
+          that.time_table[6].push(that.myTimeTableList[7].second);
+          that.time_table[6].push(that.myTimeTableList[7].thirdly);
+          that.time_table[6].push(that.myTimeTableList[7].fourthly);
+          that.time_table[6].push(that.myTimeTableList[7].fifth);
+          that.time_table[6].push(that.myTimeTableList[7].sixth);
+          that.time_table[6].push(that.myTimeTableList[7].seventh);
+          that.time_table[6].push(that.myTimeTableList[7].eighth);
+          that.time_table[6].push(that.myTimeTableList[7].ninth);
+          that.time_table[6].push(that.myTimeTableList[7].tenth);
+          for (let k = 0; k < that.time_table[0].length; k++) {
+            console.log(
+              that.time_table[0][k][1] == that.time_table[0][k++][1] &&
+                that.time_table[0][k][1]
+            ); 
+             if (
+              that.time_table[0][k][1] == that.time_table[0][k++][1] &&
+              that.time_table[0][k][1]
+            ) {
+              console.log(that.time_table[0][k]);
+            } 
+          }*/
         })
       );
     }
@@ -263,7 +349,7 @@ export default {
   .timetable {
     width: 100%;
     background: #fff;
-    /* .header {
+    .header {
       width: 100%;
       height: 2.25rem;
       box-shadow: 0 0.05rem 0.3rem rgba(0, 0, 0, 0.2);
@@ -302,6 +388,25 @@ export default {
                 margin-top: 0.2rem;
               }
             }
+            .bg {
+              color: #808080;
+              background: #f2f2f2;
+            }
+          }
+          &:nth-child(3) {
+            .bg {
+              background: #ffb8c4;
+            }
+          }
+          &:nth-child(4) {
+            .bg {
+              background: #808080;
+            }
+          }
+          &:nth-child(6) {
+            .bg {
+              background: #ffb8c4;
+            }
           }
           .item {
             width: 100%;
@@ -335,42 +440,9 @@ export default {
           .item-header {
             text-align: center;
           }
-        }
-      }
-    } */
-    .table-1 {
-      width: 21.6rem;
-      .item {
-        width: 100%;
-        height: 3.75rem;
-        border-bottom: 1px solid #e7e7e7;
-        &:first-child {
-          height: 2.25rem;
-          box-shadow: 0 0.05rem 0.3rem rgba(0, 0, 0, 0.2);
-          border-bottom: 0 solid #e7e7e7;
-          .inter {
-            .inter-item {
-              border-right: 0 solid #e7e7e7;
-              &:first-child {
-                background: #fff;
-              }
-            }
-          }
-        }
-        &:last-child {
-          border-bottom: 0 solid #e7e7e7;
-        }
-        .inter {
-          width: 100%;
-          height: 100%;
-          .inter-item {
-            width: 2.8rem;
-            height: 100%;
-            border-right: 1px solid #e7e7e7;
-            &:first-child {
-              width: 2rem;
-              background: #f2f2f2;
-            }
+          .bg {
+            color: #fff;
+            background: #b3b3b3;
           }
         }
       }

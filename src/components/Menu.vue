@@ -39,9 +39,9 @@ export default {
           active: false
         },
         {
-          title: "考勤",
+          title: "预约",
           icon: "icon-kaoqin",
-          link: "/pages/kaoqin",
+          link: "/pages/classroom/classroom/classroomReservation",
           active: false
         },
         {

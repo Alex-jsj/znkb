@@ -50,7 +50,7 @@
         "fifth": ["", null, null],
         "sixth": ["", null, null],
         "seventh": ["", null, null],
-        "eighth": ["14产品3班", "机械制图+CAD+工业设计导论", "a#101"],
+        "eighth": ["14产品3班", "机械制图+CAD", "a#101"],
         "ninth": ["", null, null],
         "tenth": ["", null, null]
     },
@@ -66,7 +66,7 @@
         "seventh": ["", null, null],
         "eighth": ["", null, null],
         "ninth": ["", null, null],
-        "tenth": ["", null, null]
+        "tenth": ["14产品3班", "工业设计导论", "a#101"]
     },
     {
         "name": "老师名",
@@ -74,13 +74,13 @@
         "first": ["", null, null],
         "second": ["", null, null],
         "thirdly": ["", null, null],
-        "fourthly": ["", null, null],
-        "fifth": ["", null, null],
+        "fourthly": ["14产品3班", "工业设计导论", "a#101"],
+        "fifth": ["14产品3班", "工业设计导论", "a#101"],
         "sixth": ["", null, null],
         "seventh": ["", null, null],
-        "eighth": ["14产品3班", "工业设计导论", "a#101"],
-        "ninth": ["14产品3班", "工业设计导论", "a#101"],
-        "tenth": ["", null, null]
+        "eighth": ["", null, null],
+        "ninth": ["", null, null],
+        "tenth": ["14产品3班", "工业设计导论", "a#101"]
     },
     {
         "name": "老师名",
@@ -92,7 +92,7 @@
         "fifth": ["", null, null],
         "sixth": ["", null, null],
         "seventh": ["", null, null],
-        "eighth": [null, null, null],
+        "eighth": ["", null, null],
         "ninth": ["", null, null],
         "tenth": ["", null, null]
     },
@@ -106,7 +106,7 @@
         "fifth": ["", null, null],
         "sixth": ["", null, null],
         "seventh": ["", null, null],
-        "eighth": [null, null, null],
+        "eighth": ["", null, null],
         "ninth": ["", null, null],
         "tenth": ["", null, null]
     }
