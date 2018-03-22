@@ -2,11 +2,11 @@
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
  * @Last Modified by: Alex chenzeyongjsj@163.com
- * @Last Modified time: 2018-03-22 09:57:10
+ * @Last Modified time: 2018-03-22 10:22:51
  */
 
 <template>
-  <div class="myTimetable">
+  <div class="keepTime">
     <!-- 筛选 -->
     <div class="filter">
       <!-- 年度学期 -->
@@ -38,55 +38,85 @@
               <p class="week">{{list.date[0]}}</p>
               <p class="week-date">{{list.date[1]}}</p>
             </li>
-            <li class="item" :class="{'bg':list.first[0]}">
+            <li class="item" :class="{'bg':list.first[0]}" @click="keepInfo(list.first[1])">
               <p class="first">{{list.first[0]}}</p>
               <p class="second">{{list.first[1]}}</p>
               <p>{{list.first[2]}}</p>
+              <p class="keepInfo" :class="list.first[3]?'keepInfo-active':''">
+                <span>{{list.first[3]}}{{list.first[4]}}</span>
+              </p>
             </li>
-            <li class="item" :class="{'bg':list.second[0]}">
+            <li class="item" :class="{'bg':list.second[0]}" @click="keepInfo(list.second[1])">
               <p class="first">{{list.second[0]}}</p>
               <p class="second">{{list.second[1]}}</p>
               <p>{{list.second[2]}}</p>
+              <p class="keepInfo" :class="list.second[3]?'keepInfo-active':''">
+                <span>{{list.second[3]}}{{list.second[4]}}</span>
+              </p>
             </li>
-            <li class="item" :class="{'bg':list.thirdly[0]}">
+            <li class="item" :class="{'bg':list.thirdly[0]}" @click="keepInfo(list.thirdly[1])">
               <p class="first">{{list.thirdly[0]}}</p>
               <p class="second">{{list.thirdly[1]}}</p>
               <p>{{list.thirdly[2]}}</p>
+              <p class="keepInfo" :class="list.thirdly[3]?'keepInfo-active':''">
+                <span>{{list.thirdly[3]}}{{list.thirdly[4]}}</span>
+              </p>
             </li>
-            <li class="item" :class="{'bg':list.fourthly[0]}">
+            <li class="item" :class="{'bg':list.fourthly[0]}" @click="keepInfo(list.fourthly[1])">
               <p class="first">{{list.fourthly[0]}}</p>
               <p class="second">{{list.fourthly[1]}}</p>
               <p>{{list.fourthly[2]}}</p>
+              <p class="keepInfo" :class="list.fourthly[3]?'keepInfo-active':''">
+                <span>{{list.fourthly[3]}}{{list.fourthly[4]}}</span>
+              </p>
             </li>
-            <li class="item" :class="{'bg':list.fifth[0]}">
+            <li class="item" :class="{'bg':list.fifth[0]}" @click="keepInfo(list.fifth[1])">
               <p class="first">{{list.fifth[0]}}</p>
               <p class="second">{{list.fifth[1]}}</p>
               <p>{{list.fifth[2]}}</p>
+              <p class="keepInfo" :class="list.fifth[3]?'keepInfo-active':''">
+                <span>{{list.fifth[3]}}{{list.fifth[4]}}</span>
+              </p>
             </li>
-            <li class="item" :class="{'bg':list.sixth[0]}">
+            <li class="item" :class="{'bg':list.sixth[0]}" @click="keepInfo(list.sixth[1])">
               <p class="first">{{list.sixth[0]}}</p>
               <p class="second">{{list.sixth[1]}}</p>
               <p>{{list.sixth[2]}}</p>
+              <p class="keepInfo" :class="list.sixth[3]?'keepInfo-active':''">
+                <span>{{list.sixth[3]}}{{list.sixth[4]}}</span>
+              </p>
             </li>
-            <li class="item" :class="{'bg':list.seventh[0]}">
+            <li class="item" :class="{'bg':list.seventh[0]}" @click="keepInfo(list.seventh[1])">
               <p class="first">{{list.seventh[0]}}</p>
               <p class="second">{{list.seventh[1]}}</p>
               <p>{{list.seventh[2]}}</p>
+              <p class="keepInfo" :class="list.seventh[3]?'keepInfo-active':''">
+                <span>{{list.seventh[3]}}{{list.seventh[4]}}</span>
+              </p>
             </li>
-            <li class="item" :class="{'bg':list.eighth[0]}">
+            <li class="item" :class="{'bg':list.eighth[0]}" @click="keepInfo(list.eighth[1])">
               <p class="first">{{list.eighth[0]}}</p>
               <p class="second">{{list.eighth[1]}}</p>
               <p>{{list.eighth[2]}}</p>
+              <p class="keepInfo" :class="list.eighth[3]?'keepInfo-active':''">
+                <span>{{list.eighth[3]}}{{list.eighth[4]}}</span>
+              </p>
             </li>
-            <li class="item" :class="{'bg':list.ninth[0]}">
+            <li class="item" :class="{'bg':list.ninth[0]}" @click="keepInfo(list.ninth[1])">
               <p class="first">{{list.ninth[0]}}</p>
               <p class="second">{{list.ninth[1]}}</p>
               <p>{{list.ninth[2]}}</p>
+              <p class="keepInfo" :class="list.ninth[3]?'keepInfo-active':''">
+                <span>{{list.ninth[3]}}{{list.ninth[4]}}</span>
+              </p>
             </li>
-            <li class="item" :class="{'bg':list.tenth[0]}">
+            <li class="item" :class="{'bg':list.tenth[0]}" @click="keepInfo(list.tenth[1])">
               <p class="first">{{list.tenth[0]}}</p>
               <p class="second">{{list.tenth[1]}}</p>
               <p>{{list.tenth[2]}}</p>
+              <p class="keepInfo" :class="list.tenth[3]?'keepInfo-active':''">
+                <span>{{list.tenth[3]}}{{list.tenth[4]}}</span>
+              </p>
             </li>
           </ul>
         </div>
@@ -100,13 +130,12 @@
 /* 引入组件 */
 import Menu from "@/components/Menu";
 export default {
-  name: "myTimetable",
+  name: "keepTime",
   data() {
     return {
-      linkActive: 1,
+      linkActive: 2,
       myTimeTableList: [],
       filterList: [],
-      //time_table: [[], [], [], [], [], [], []],
       //周次
       week: "",
       //课程
@@ -118,7 +147,7 @@ export default {
   },
   mounted: function() {
     //修改页面title
-    document.title = "我的课表";
+    document.title = "学生考勤";
     //判断登录状态
     if (!localStorage.getItem("userToken")) {
       //跳转到登录页
@@ -127,7 +156,7 @@ export default {
       let that = this;
       //获取课表信息
       function myTimeTableList() {
-        return that.$http.get("./static/mock/myTimetable.json");
+        return that.$http.get("./static/mock/keepTime.json");
       }
       //获取筛选数据
       function filterList() {
@@ -141,119 +170,6 @@ export default {
           that.filterList = filter_list.data;
           that.week = that.filterList.week;
           that.class_filter = that.filterList.class;
-          /* for (let i = 0; i < my_timeTable.data.length; i++) {
-            if (i > 0) {
-              that.myTimeTableList[i].first.push(my_timeTable.data[0].first[1]);
-              that.myTimeTableList[i].second.push(
-                my_timeTable.data[0].second[1]
-              );
-              that.myTimeTableList[i].thirdly.push(
-                my_timeTable.data[0].thirdly[1]
-              );
-              that.myTimeTableList[i].fourthly.push(
-                my_timeTable.data[0].fourthly[1]
-              );
-              that.myTimeTableList[i].fifth.push(my_timeTable.data[0].fifth[1]);
-              that.myTimeTableList[i].sixth.push(my_timeTable.data[0].sixth[1]);
-              that.myTimeTableList[i].seventh.push(
-                my_timeTable.data[0].seventh[1]
-              );
-              that.myTimeTableList[i].eighth.push(
-                my_timeTable.data[0].eighth[1]
-              );
-              that.myTimeTableList[i].ninth.push(my_timeTable.data[0].ninth[1]);
-              that.myTimeTableList[i].tenth.push(my_timeTable.data[0].tenth[1]);
-            }
-          }
-          //周一
-          that.time_table[0].push(that.myTimeTableList[1].first);
-          that.time_table[0].push(that.myTimeTableList[1].second);
-          that.time_table[0].push(that.myTimeTableList[1].thirdly);
-          that.time_table[0].push(that.myTimeTableList[1].fourthly);
-          that.time_table[0].push(that.myTimeTableList[1].fifth);
-          that.time_table[0].push(that.myTimeTableList[1].sixth);
-          that.time_table[0].push(that.myTimeTableList[1].seventh);
-          that.time_table[0].push(that.myTimeTableList[1].eighth);
-          that.time_table[0].push(that.myTimeTableList[1].ninth);
-          that.time_table[0].push(that.myTimeTableList[1].tenth);
-          //周二
-          that.time_table[1].push(that.myTimeTableList[2].first);
-          that.time_table[1].push(that.myTimeTableList[2].second);
-          that.time_table[1].push(that.myTimeTableList[2].thirdly);
-          that.time_table[1].push(that.myTimeTableList[2].fourthly);
-          that.time_table[1].push(that.myTimeTableList[2].fifth);
-          that.time_table[1].push(that.myTimeTableList[2].sixth);
-          that.time_table[1].push(that.myTimeTableList[2].seventh);
-          that.time_table[1].push(that.myTimeTableList[2].eighth);
-          that.time_table[1].push(that.myTimeTableList[2].ninth);
-          that.time_table[1].push(that.myTimeTableList[2].tenth);
-          //周二
-          that.time_table[2].push(that.myTimeTableList[3].first);
-          that.time_table[2].push(that.myTimeTableList[3].second);
-          that.time_table[2].push(that.myTimeTableList[3].thirdly);
-          that.time_table[2].push(that.myTimeTableList[3].fourthly);
-          that.time_table[2].push(that.myTimeTableList[3].fifth);
-          that.time_table[2].push(that.myTimeTableList[3].sixth);
-          that.time_table[2].push(that.myTimeTableList[3].seventh);
-          that.time_table[2].push(that.myTimeTableList[3].eighth);
-          that.time_table[2].push(that.myTimeTableList[3].ninth);
-          that.time_table[2].push(that.myTimeTableList[3].tenth);
-          //周二
-          that.time_table[3].push(that.myTimeTableList[4].first);
-          that.time_table[3].push(that.myTimeTableList[4].second);
-          that.time_table[3].push(that.myTimeTableList[4].thirdly);
-          that.time_table[3].push(that.myTimeTableList[4].fourthly);
-          that.time_table[3].push(that.myTimeTableList[4].fifth);
-          that.time_table[3].push(that.myTimeTableList[4].sixth);
-          that.time_table[3].push(that.myTimeTableList[4].seventh);
-          that.time_table[3].push(that.myTimeTableList[4].eighth);
-          that.time_table[3].push(that.myTimeTableList[4].ninth);
-          that.time_table[3].push(that.myTimeTableList[4].tenth);
-          //周二
-          that.time_table[4].push(that.myTimeTableList[5].first);
-          that.time_table[4].push(that.myTimeTableList[5].second);
-          that.time_table[4].push(that.myTimeTableList[5].thirdly);
-          that.time_table[4].push(that.myTimeTableList[5].fourthly);
-          that.time_table[4].push(that.myTimeTableList[5].fifth);
-          that.time_table[4].push(that.myTimeTableList[5].sixth);
-          that.time_table[4].push(that.myTimeTableList[5].seventh);
-          that.time_table[4].push(that.myTimeTableList[5].eighth);
-          that.time_table[4].push(that.myTimeTableList[5].ninth);
-          that.time_table[4].push(that.myTimeTableList[5].tenth);
-          //周二
-          that.time_table[5].push(that.myTimeTableList[6].first);
-          that.time_table[5].push(that.myTimeTableList[6].second);
-          that.time_table[5].push(that.myTimeTableList[6].thirdly);
-          that.time_table[5].push(that.myTimeTableList[6].fourthly);
-          that.time_table[5].push(that.myTimeTableList[6].fifth);
-          that.time_table[5].push(that.myTimeTableList[6].sixth);
-          that.time_table[5].push(that.myTimeTableList[6].seventh);
-          that.time_table[5].push(that.myTimeTableList[6].eighth);
-          that.time_table[5].push(that.myTimeTableList[6].ninth);
-          that.time_table[5].push(that.myTimeTableList[6].tenth);
-          //周日
-          that.time_table[6].push(that.myTimeTableList[7].first);
-          that.time_table[6].push(that.myTimeTableList[7].second);
-          that.time_table[6].push(that.myTimeTableList[7].thirdly);
-          that.time_table[6].push(that.myTimeTableList[7].fourthly);
-          that.time_table[6].push(that.myTimeTableList[7].fifth);
-          that.time_table[6].push(that.myTimeTableList[7].sixth);
-          that.time_table[6].push(that.myTimeTableList[7].seventh);
-          that.time_table[6].push(that.myTimeTableList[7].eighth);
-          that.time_table[6].push(that.myTimeTableList[7].ninth);
-          that.time_table[6].push(that.myTimeTableList[7].tenth);
-          for (let k = 0; k < that.time_table[0].length; k++) {
-            console.log(
-              that.time_table[0][k][1] == that.time_table[0][k++][1] &&
-                that.time_table[0][k][1]
-            ); 
-             if (
-              that.time_table[0][k][1] == that.time_table[0][k++][1] &&
-              that.time_table[0][k][1]
-            ) {
-              console.log(that.time_table[0][k]);
-            } 
-          }*/
         })
       );
     }
@@ -262,14 +178,20 @@ export default {
     weekChange() {},
     classChange() {},
     //筛选课表ajax
-    timetable_filter() {}
+    timetable_filter() {},
+    //进入课程详情页
+    keepInfo(val) {
+      if (val) {
+        this.$router.push({ path: "/pages/keepTime/keepInfo" });
+      }
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-.myTimetable {
+.keepTime {
   width: 100%;
   min-height: 100vh;
   padding-bottom: 2rem;
@@ -417,6 +339,7 @@ export default {
             padding: 0.2rem;
             overflow: hidden;
             color: #808080;
+            position: relative;
             &:first-child {
               height: 2.25rem;
               border-bottom: 0 solid #ddd;
@@ -436,6 +359,20 @@ export default {
               margin-top: 0.1rem;
               color: #bebebe;
             }
+          }
+          .keepInfo {
+            width: 100%;
+            height: 0.8rem;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            span {
+              line-height: 0.8rem;
+            }
+          }
+          .keepInfo-active {
+            background: #facc88;
           }
           .item-header {
             text-align: center;

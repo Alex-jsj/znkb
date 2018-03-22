@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-03-05 16:43:42 
- * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-19 08:29:28
+ * @Last Modified by: Alex chenzeyongjsj@163.com
+ * @Last Modified time: 2018-03-22 09:46:51
  */
 
 <template>
@@ -80,13 +80,13 @@ export default {
           menu_link: "/pages/myTimetable",
           new_message: false
         },
-        /* {
+        {
           img_src: "./static/img/icon2.png",
           img_class: "menu-icon icon2",
           menu_title: "学生考勤",
-          menu_link: "/",
+          menu_link: "/pages/keepTime/keepTime",
           new_message: false
-        }, */
+        },
         {
           img_src: "./static/img/icon3.png",
           img_class: "menu-icon icon3",
@@ -131,13 +131,13 @@ export default {
           menu_link: "/pages/myTimetable",
           new_message: false
         },
-        /* {
+        {
           img_src: "./static/img/icon2-2.png",
           img_class: "menu-icon icon2",
           menu_title: "学生考勤",
-          menu_link: "/",
+          menu_link: "/pages/keepTime/keepTime",
           new_message: false
-        }, */
+        },
         {
           img_src: "./static/img/icon3-3.png",
           img_class: "menu-icon icon3",

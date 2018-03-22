@@ -23,7 +23,7 @@ export default {
   name: "classroom",
   data() {
     return {
-      linkActive: 2, //菜单定位
+      linkActive: 5, //菜单定位
       switchList: [
         {
           title: "教室预约",

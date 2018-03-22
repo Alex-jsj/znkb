@@ -1,8 +1,8 @@
 /*
  * @Author: Alex chenzeyongjsj@163.com 
  * @Date: 2018-02-28 16:43:09 
- * @Last Modified by: alex (chenzeyongjsj@163.com)
- * @Last Modified time: 2018-03-19 08:28:57
+ * @Last Modified by: Alex chenzeyongjsj@163.com
+ * @Last Modified time: 2018-03-22 10:19:01
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -25,6 +25,8 @@ import adjustmentClass from '@/pages/adjustmentClass/adjustmentClass' //并课�
 import adjustmentClassApply from '@/pages/adjustmentClass/adjustmentClassApply' //并课申请
 import adjustmentClassRecord from '@/pages/adjustmentClass/adjustmentClassRecord' //并课申请记录
 import adjustmentClassInfo from '@/pages/adjustmentClass/adjustmentClassInfo' //并课申请详情页
+import keepTime from '@/pages/keepTime/keepTime' //学生考勤
+import keepInfo from '@/pages/keepTime/keepInfo' //学生考勤详情页
 
 Vue.use(Router)
 
@@ -44,6 +46,14 @@ export default new Router({
         {
             path: '/pages/myTimetable',
             component: myTimetable
+        },
+        {
+            path: '/pages/keepTime/keepTime',
+            component: keepTime
+        },
+        {
+            path: '/pages/keepTime/keepInfo',
+            component: keepInfo
         },
         {
             path: '/pages/message/messageNotification',
