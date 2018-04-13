@@ -15,9 +15,9 @@
         <span class="item-title float-left">调课课程：</span>
         <div class="item-container float-right">
           <select class="picker-select" v-model="myClass" @change="selectChecked()">
-            <option v-for="item in myClassList" :key="item.id" :value="item">{{item.title}}</option>
+            <option v-for="item in myClassList" :key="item.id" :value="item">{{item.name}}</option>
           </select>
-          <span>{{myClass.title}}</span>
+          <span>{{myClass.name}}</span>
           <i class="iconfont icon-down"></i>
         </div>
       </div>
@@ -38,25 +38,15 @@
             <span>上课教师：{{myTeacher}}</span>
           </div>
         </div>
-        <div class="form-item item-2">
-          <div class="item-container2 float-right">
-            <span>上课地点：{{myPlace}}</span>
-          </div>
-        </div>
-        <div class="form-item item-2">
-          <div class="item-container2 float-right">
-            <span>上课班级：{{myC}}</span>
-          </div>
-        </div>
       </div>
       <!-- 对方 -->
       <div class="form-item toItem">
         <span class="item-title float-left">对方课程：</span>
         <div class="item-container float-right">
           <select class="picker-select" v-model="toClass" @change="selectChecked2()">
-            <option v-for="item in toClassList" :key="item.id" :value="item">{{item.title}}</option>
+            <option v-for="item in toClassList" :key="item.id" :value="item">{{item.name}}</option>
           </select>
-          <span>{{toClass.title}}</span>
+          <span>{{toClass.name}}</span>
           <i class="iconfont icon-down"></i>
         </div>
       </div>
@@ -73,17 +63,9 @@
       <div v-if="toClass">
         <div class="form-item item-2">
           <div class="item-container2 float-right">
-            <span>上课教师：{{toTeacher}}</span>
-          </div>
-        </div>
-        <div class="form-item item-2">
-          <div class="item-container2 float-right">
-            <span>上课地点：{{toPlace}}</span>
-          </div>
-        </div>
-        <div class="form-item item-2">
-          <div class="item-container2 float-right">
-            <span>上课班级：{{toC}}</span>
+            <span>上课教师：</span>
+            <mt-radio v-model="toClassValue" :options="toClassTeacherList">
+            </mt-radio>
           </div>
         </div>
       </div>
@@ -102,6 +84,7 @@
 </template>
 <script>
 import { MessageBox, Toast } from "mint-ui";
+import qs from "qs"; //序列化
 export default {
   name: "adjustmentClassApply",
   data() {
@@ -122,6 +105,8 @@ export default {
       myClass: "",
       toClassList: [], //对方课程
       toClass: "",
+      toClassTeacherList: [],
+      toClassValue: "",
       //已选择课程
       selectCheck: false,
       selectCheck2: false,
@@ -132,43 +117,63 @@ export default {
     };
   },
   mounted: function() {
+    let that = this;
     //修改页面title
     document.title = "调课申请";
+    //设置初始时间
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let day = now.getDate();
+    month < 10 ? (month = "0" + month) : month;
+    day < 10 ? (day = "0" + day) : day;
+    this.myDate = year + "-" + month + "-" + day;
+    this.toDate = year + "-" + month + "-" + day;
     //判断登录状态
-    if (!localStorage.getItem("userToken")) {
-      //跳转到登录页
-      this.$router.push({ path: "/pages/Login" });
-    } else {
-      let that = this;
-      // 设置登录信息
-      that.userToken = localStorage.getItem("userToken");
-      that.student_num = localStorage.getItem("student_num");
-      //设置初始时间
-      let now = new Date();
-      let year = now.getFullYear();
-      let month = now.getMonth() + 1;
-      let day = now.getDate();
-      month < 10 ? (month = "0" + month) : month;
-      day < 10 ? (day = "0" + day) : day;
-      this.myDate = year + "-" + month + "-" + day;
-      this.toDate = year + "-" + month + "-" + day;
-      //获取下拉列表数据
-      function myClassList() {
-        return that.$http.get("./static/mock/myClassList.json");
-      }
-
-      function toClassList() {
-        return that.$http.get("./static/mock/toClassList.json");
-      }
-
-      that.$http.all([myClassList(), toClassList()]).then(
-        that.$http.spread(function(myClass, toClass) {
-          // 两个请求现在都执行完成
-          that.myClassList = myClass.data;
-          that.toClassList = toClass.data;
-        })
-      );
-    }
+    that
+      .$http({
+        method: "get",
+        url: "/Home/Verify/index?token=" + localStorage.getItem("tec_token")
+      })
+      .then(response => {
+        //登录成功之后获取用户数据
+        if (response.data.verify) {
+          that
+            .$http({
+              method: "get",
+              url: "/Home/Teacher/switching_submit"
+            })
+            .then(response => {
+              if (response.data) {
+                let res = response.data;
+                that.myClassList = res;
+                that.toClassList = res;
+              } else {
+                let instance = Toast("网络错误");
+                setTimeout(() => {
+                  instance.close();
+                }, 1000);
+              }
+            })
+            .catch(error => {
+              alert("网络错误");
+              console.log(error);
+            });
+        } else {
+          //登录过期 => 清除前台存储的登录信息并返回登录页
+          let instance = Toast("登录已失效，请重新登录！");
+          setTimeout(() => {
+            instance.close();
+            localStorage.removeItem("tec_token");
+            localStorage.removeItem("job_num");
+            that.$router.push({ path: "/pages/Login" });
+          }, 1000);
+        }
+      })
+      .catch(error => {
+        alert("网络错误！");
+        console.log(error);
+      });
   },
   methods: {
     //打开日期选择器
@@ -206,137 +211,110 @@ export default {
     selectChecked() {
       let that = this;
       that.selectCheck = true;
-      that
-        .$http({
-          method: "get",
-          url: "./static/mock/andClassSelect.json",
-          data: {
-            date: that.myDate,
-            classname: that.myClass.title
-          },
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          //格式化
-          transformRequest: [
-            function(data) {
-              let ret = "";
-              for (let it in data) {
-                ret +=
-                  encodeURIComponent(it) +
-                  "=" +
-                  encodeURIComponent(data[it]) +
-                  "&";
-              }
-              return ret;
-            }
-          ]
-        })
-        .then(response => {
-          that.myTeacher = response.data.teacher;
-          that.myPlace = response.data.place;
-          that.myC = response.data.class;
-        })
-        .catch(error => {
-          console.log(error);
-        });
     },
     selectChecked2() {
       let that = this;
       that.selectCheck2 = true;
-      that
-        .$http({
-          method: "get",
-          url: "./static/mock/andClassSelect2.json",
-          data: {
-            date: that.toDate,
-            classname: that.toClass.title
-          },
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          //格式化
-          transformRequest: [
-            function(data) {
-              let ret = "";
-              for (let it in data) {
-                ret +=
-                  encodeURIComponent(it) +
-                  "=" +
-                  encodeURIComponent(data[it]) +
-                  "&";
-              }
-              return ret;
-            }
-          ]
-        })
-        .then(response => {
-          that.toTeacher = response.data.teacher;
-          that.toPlace = response.data.place;
-          that.toC = response.data.class;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      that.toClassTeacherList = [];
+      let list = that.toClass.teach.split(",");
+      that.selectCheck = true;
+      for (let i = 0; i < list.length; i++) {
+        that.toClassTeacherList.push(list[i]);
+      }
+      that.toClassValue = list[0];
     },
     //表单提交
     submit: function() {
-      var that = this;
-      if (that.selectCheck && that.selectCheck2) {
-        //验证通过
-        that
-          .$http({
-            method: "get",
-            url: "./static/mock/login.json",
-            data: {},
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            //格式化
-            transformRequest: [
-              function(data) {
-                let ret = "";
-                for (let it in data) {
-                  ret +=
-                    encodeURIComponent(it) +
-                    "=" +
-                    encodeURIComponent(data[it]) +
-                    "&";
-                }
-                return ret;
+      let that = this;
+      //判断登录状态
+      that
+        .$http({
+          method: "get",
+          url: "/Home/Verify/index?token=" + localStorage.getItem("tec_token")
+        })
+        .then(response => {
+          //登录成功之后获取用户数据
+          if (response.data.verify) {
+            //验证通过
+            if (that.selectCheck && that.selectCheck2) {
+              if (that.submit_btn) {
+                //关闭提交按钮防止重复提交
+                that.submit_btn = false;
+                that
+                  .$http({
+                    method: "post",
+                    url: "/Home/Teacher/classroom_submit",
+                    data: qs.stringify({
+                      job_num: localStorage.getItem("job_num"), //工号
+                      my_class: that.myClass.name, //我的课程
+                      my_date: that.myDate, //我的时间
+                      my_teacher: that.myTeacher, //我方教师
+                      to_class: that.toClass.name, //对方课程
+                      to_date: that.toDate, //对方时间
+                      to_teacher: that.toClassValue, //对方教师
+                      reason: that.remarks //备注
+                    })
+                  })
+                  .then(response => {
+                    if (response.data) {
+                      if (response.data.code == 1) {
+                        let instance = Toast("提交成功");
+                        setTimeout(() => {
+                          instance.close();
+                          that.$router.push({
+                            path:
+                              "/pages/adjustmentClass/adjustmentClass/adjustmentClassRecord"
+                          });
+                        }, 500);
+                      } else {
+                        //提交失败则重新开放登录按钮
+                        that.submit_btn = true;
+                        let instance = Toast("提交失败");
+                        setTimeout(() => {
+                          instance.close();
+                        }, 1000);
+                      }
+                    } else {
+                      let instance = Toast("网络错误");
+                      setTimeout(() => {
+                        instance.close();
+                        //提交失败则重新开放登录按钮
+                        that.submit_btn = true;
+                      }, 1000);
+                    }
+                  })
+                  .catch(error => {
+                    alert("网络错误");
+                    console.log(error);
+                    //请求失败重新打开提交按钮
+                    that.submit_btn = true;
+                  });
               }
-            ]
-          })
-          .then(response => {
-            let instance = Toast("提交成功");
-            //提交成功之后关闭提交按钮并跳转到预约列表页
-            that.submit_btn = false;
+            } else {
+              MessageBox("提示", "请选择课程");
+            }
+          } else {
+            //登录过期 => 清除前台存储的登录信息并返回登录页
+            let instance = Toast("登录已失效，请重新登录！");
             setTimeout(() => {
               instance.close();
-              that.$router.push({
-                path: "/pages/andClass/andClass/andClassRecord"
-              });
-            }, 500);
-          })
-          .catch(error => {
-            let instance = Toast("提交失败");
-            setTimeout(() => {
-              instance.close();
+              localStorage.removeItem("tec_token");
+              localStorage.removeItem("job_num");
+              that.$router.push({ path: "/pages/Login" });
             }, 1000);
-            //提交失败则重新开放登录按钮
-            that.submit_btn = true;
-            console.log(error);
-          });
-      } else {
-        MessageBox("提示", "请选择课程");
-      }
+          }
+        })
+        .catch(error => {
+          alert("网络错误！");
+          console.log(error);
+        });
     }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less">
+<style lang="less">
 .adjustmentClassApply {
   width: 100%;
   position: relative;
@@ -396,12 +374,11 @@ export default {
       }
       .item-container2 {
         width: 10.4rem;
-        height: 1rem;
+        min-height: 1rem;
         font-size: 0.5rem;
         color: #808080;
         line-height: 1rem;
         position: relative;
-        overflow: hidden;
       }
       .item-container3 {
         width: 10.4rem;
@@ -416,6 +393,17 @@ export default {
         font-size: 0.6rem;
         //去除移动版的内阴影
         -webkit-appearance: none;
+      }
+      .mint-cell {
+        background: transparent;
+        min-height: 1.2rem;
+        .mint-cell-wrapper {
+          font-size: 0.5rem;
+          padding: 0;
+        }
+        .mint-radiolist-label {
+          padding: 0;
+        }
       }
     }
     .toItem {

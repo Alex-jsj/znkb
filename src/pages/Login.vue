@@ -16,7 +16,7 @@
     <div class="login-box">
       <!-- user -->
       <div class="container user">
-        <input type="text" placeholder="请输入学号 / 工号" v-model="user" @blur="userV()" :class="{'test':userTest}">
+        <input type="text" placeholder="请输入工号" v-model="user" @blur="userV()" :class="{'test':userTest}">
         <i class="iconfont icon-user"></i>
         <!-- 错误提示 -->
         <span class="errText">{{userErr}}</span>
@@ -33,14 +33,15 @@
         <button @click="formSubmit()">登&nbsp;&nbsp;&nbsp;录</button>
       </div>
       <!-- 微信快捷登录 -->
-      <div class="container wechat-submit">
+     <!--  <div class="container wechat-submit">
         <button>微信快捷登录</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 <script>
 import { MessageBox, Toast } from "mint-ui";
+import qs from "qs"; //序列化
 export default {
   name: "Login",
   data() {
@@ -58,7 +59,7 @@ export default {
     //修改页面title
     document.title = "登录";
     //如果已登录
-    if (localStorage.getItem("userToken")) {
+    if (localStorage.getItem("tec_token")) {
       //跳转到首页
       this.$router.push({ path: "/pages/Home" });
     }
@@ -100,66 +101,56 @@ export default {
     formSubmit: function() {
       var that = this;
       if (this.userTest && this.psdTest && that.canSubmit) {
+        //防止重复提交
+        that.canSubmit = false;
         //验证通过
-        this.$http({
+        that.$http({
           method: "post",
-          url: "/Home/Index/login",
-          data: {
-            student_num: this.user,
+          url: "/Home/login/teacher_login",
+          data: qs.stringify({
+            job_num: this.user,
             password: this.password
-          },
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          //格式化
-          transformRequest: [
-            function(data) {
-              let ret = "";
-              for (let it in data) {
-                ret +=
-                  encodeURIComponent(it) +
-                  "=" +
-                  encodeURIComponent(data[it]) +
-                  "&";
-              }
-              return ret;
-            }
-          ]
+          }),
         })
           .then(response => {
-            console.log(response.data)
             if (response.data.code == 1) {
-              //防止重复提交
-              that.canSubmit = false;
               let instance = Toast("登录成功");
-              localStorage.setItem("student_num", that.user);
-              localStorage.setItem("userToken", response.data.token);
+              localStorage.setItem("job_num", that.user);
+              localStorage.setItem("tec_token", response.data.token);
               setTimeout(() => {
                 instance.close();
                 that.$router.push({ path: "/pages/Home" });
               }, 500);
             } else if (response.data.code == 2) {
               MessageBox("提示", "账户不存在，请核对后再试！");
+              //登录失败重新开放登录按钮
+              that.canSubmit = true;
             } else if (response.data.code == 3) {
               MessageBox("提示", "密码错误！");
+              //登录失败重新开放登录按钮
+              that.canSubmit = true;
             } else {
               MessageBox("提示", "登陆失败！");
+              //登录失败重新开放登录按钮
+              that.canSubmit = true;
             }
           })
           .catch(error => {
-            MessageBox("提示", "登陆失败！");
+            MessageBox("提示", "网络错误！");
             console.log(error);
+            //登录失败重新开放登录按钮
+            that.canSubmit = true;
           });
       } else {
-        if (this.userTest) {
-          this.userErr = "";
+        if (that.userTest) {
+          that.userErr = "";
         } else {
-          this.userErr = "用户名格式错误！";
+          that.userErr = "用户名格式错误！";
         }
-        if (this.psdTest) {
-          this.psdErr = "";
+        if (that.psdTest) {
+          that.psdErr = "";
         } else {
-          this.psdErr = "密码格式错误！";
+          that.psdErr = "密码格式错误！";
         }
       }
     }

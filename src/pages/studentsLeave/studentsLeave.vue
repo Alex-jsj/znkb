@@ -41,7 +41,7 @@ export default {
   name: "studentsLeave",
   data() {
     return {
-      linkActive: 3, //菜单定位
+      linkActive: 5, //菜单定位
       leaveList: [],
       loading: false
     };

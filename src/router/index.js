@@ -8,6 +8,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/pages/Login' //登录页
 import Home from '@/pages/Home' //首页
+import More from '@/pages/More' //首页
 import myTimetable from '@/pages/myTimetable' //我的课表
 import messageNotification from '@/pages/message/messageNotification' //消息通知
 import messageInfo from '@/pages/message/messageInfo' //消息通知
@@ -15,6 +16,7 @@ import classroom from '@/pages/classroom/classroom' //教室预约
 import classroomReservation from '@/pages/classroom/classroomReservation' //教室预约
 import reservationInfo from '@/pages/classroom/reservationInfo' //预约记录
 import reservationRecord from '@/pages/classroom/reservationRecord' //预约记录
+import reservationDetails from '@/pages/classroom/reservationDetails' //预约详情页
 import studentsLeave from '@/pages/studentsLeave/studentsLeave' //学生请假
 import leaveInfo from '@/pages/studentsLeave/leaveInfo' //学生请假详情页
 import andClass from '@/pages/andClass/andClass' //并课申请
@@ -38,6 +40,10 @@ export default new Router({
         {
             path: '/pages/Home',
             component: Home
+        },
+        {
+            path: '/pages/More',
+            component: More
         },
         {
             path: '/pages/Login',
@@ -136,6 +142,10 @@ export default new Router({
                     component: reservationRecord
                 }
             ]
+        },
+        {
+            path: '/pages/classroom/reservationDetails',
+            component: reservationDetails,
         },
         {
             path: '*',

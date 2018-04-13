@@ -46,7 +46,7 @@ export default {
     //修改页面title
     document.title = "调课记录";
     //判断登录状态
-    if (!localStorage.getItem("userToken")) {
+    if (!localStorage.getItem("tec_token")) {
       //跳转到登录页
       this.$router.push({ path: "/pages/Login" });
     } else {

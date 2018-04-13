@@ -45,9 +45,9 @@ export default {
           active: false
         },
         {
-          title: "请假",
-          icon: "icon-qingjia",
-          link: "/pages/studentsLeave/studentsLeave",
+          title: "预约",
+          icon: "icon-yuyue",
+          link: "/pages/classroom/classroom",
           active: false
         },
         {
@@ -59,7 +59,7 @@ export default {
         {
           title: "更多",
           icon: "icon-gengduo",
-          link: "/pages/gengduo",
+          link: "/pages/More",
           active: false
         }
       ]
@@ -126,6 +126,10 @@ export default {
       .icon-qingjia {
         font-size: 0.8rem;
         top: -0.07rem;
+      }
+      .icon-yuyue {
+        font-size: 0.8rem;
+        top: -0.06rem;
       }
       .icon-gengduo {
         font-size: 0.9rem;

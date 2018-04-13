@@ -26,9 +26,9 @@
           <!-- picker -->
           <div class="picker float-right">
             <select class="picker-select" v-model="startClass" @change="classChange()">
-              <option v-for="item in startClassList" :key="item.id" :value="item">{{item.title}}</option>
+              <option v-for="item in startClassList" :key="item.id" :value="item">{{item.name}}</option>
             </select>
-            <span>{{startClass.title}}</span>
+            <span>{{startClass.name}}</span>
             <i class="iconfont icon-down"></i>
           </div>
         </div>
@@ -46,9 +46,9 @@
           <!-- picker -->
           <div class="picker float-right" :class="{'picker-err':picker_err}">
             <select class="picker-select" v-model="endClass" @change="classChange()">
-              <option v-for="item in endClassList" :key="item.id" :value="item">{{item.title}}</option>
+              <option v-for="item in endClassList" :key="item.id" :value="item">{{item.name}}</option>
             </select>
-            <span>{{endClass.title}}</span>
+            <span>{{endClass.name}}</span>
             <i class="iconfont icon-down"></i>
           </div>
         </div>
@@ -69,14 +69,7 @@
       <div class="form-item">
         <span class="item-title float-left">教室用途：</span>
         <div class="item-container float-right">
-          <!-- picker -->
-          <div class="picker picker2 float-right">
-            <select class="picker-select" v-model="purpose">
-              <option v-for="item in purposeList" :key="item.id" :value="item">{{item.title}}</option>
-            </select>
-            <span>{{purpose.title}}</span>
-            <i class="iconfont icon-down"></i>
-          </div>
+          <input type="text" placeholder="如：教学活动" class="purpose" v-model="purpose">
         </div>
       </div>
       <div class="form-item">
@@ -95,162 +88,92 @@
 </template>
 <script>
 import { MessageBox, Toast } from "mint-ui";
+import qs from "qs"; //序列化
 export default {
   name: "reservationInfo",
   data() {
     return {
       startDate: "", //开始时间
       endDate: "", //结束时间
-      startClass: {
-        value: 0,
-        title: "第一节"
-      }, //开始第几节
-      endClass: {
-        value: 0,
-        title: "第一节"
-      }, //结束第几节
+      startClass: {},
+      endClass: {},
       users: {
-        value: 0,
-        title: "20-50人"
-      }, //使用人数
-      purpose: {
-        value: 0,
-        title: "教学活动"
-      }, //教室用途
+        //使用人数
+        value: 1,
+        title: "0-20人"
+      },
+      purpose: "",
       remarks: "", //备注
-      startClassList: [
-        {
-          title: "第一节",
-          value: 0
-        },
-        {
-          title: "第二节",
-          value: 1
-        },
-        {
-          title: "第三节",
-          value: 2
-        },
-        {
-          title: "第四节",
-          value: 3
-        },
-        {
-          title: "第五节",
-          value: 4
-        },
-        {
-          title: "第六节",
-          value: 5
-        },
-        {
-          title: "第七节",
-          value: 6
-        },
-        {
-          title: "第八节",
-          value: 7
-        },
-        {
-          title: "第九节",
-          value: 8
-        },
-        {
-          title: "第十节",
-          value: 9
-        }
-      ], //开始课程列表
-      endClassList: [
-        {
-          title: "第一节",
-          value: 0
-        },
-        {
-          title: "第二节",
-          value: 1
-        },
-        {
-          title: "第三节",
-          value: 2
-        },
-        {
-          title: "第四节",
-          value: 3
-        },
-        {
-          title: "第五节",
-          value: 4
-        },
-        {
-          title: "第六节",
-          value: 5
-        },
-        {
-          title: "第七节",
-          value: 6
-        },
-        {
-          title: "第八节",
-          value: 7
-        },
-        {
-          title: "第九节",
-          value: 8
-        },
-        {
-          title: "第十节",
-          value: 9
-        }
-      ], //结束课程列表
+      startClassList: [],
+      endClassList: [],
       nowDate: new Date(), //最小时间
       nowDate2: new Date(), //最小时间
       usersList: [
+        //使用人数列表
+        {
+          title: "0-20人",
+          value: 1
+        },
         {
           title: "20-50人",
-          value: 0
+          value: 2
         },
         {
           title: "50-100人",
-          value: 1
+          value: 3
         },
         {
           title: "100人以上",
-          value: 2
+          value: 4
         }
-      ], //使用人数列表
-      purposeList: [
-        {
-          title: "教学活动",
-          value: 0
-        },
-        {
-          title: "教学活动",
-          value: 1
-        }
-      ], //教室用途列表
+      ],
       picker_err: false, //课程节数错误提示
       submit_btn: true //提交成功之后关闭提交按钮
     };
   },
-  components: {},
   mounted: function() {
+    let that = this;
     //修改页面title
     document.title = "教室预约";
+    //设置初始时间
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let day = now.getDate();
+    month < 10 ? (month = "0" + month) : month;
+    day < 10 ? (day = "0" + day) : day;
+    this.startDate = year + "-" + month + "-" + day;
+    this.endDate = year + "-" + month + "-" + day;
     //判断登录状态
-    if (!localStorage.getItem("userToken")) {
-      //跳转到登录页
-      this.$router.push({ path: "/pages/Login" });
-    } else {
-      //设置初始时间
-      let now = new Date();
-      let year = now.getFullYear();
-      let month = now.getMonth() + 1;
-      let day = now.getDate();
-      month < 10 ? (month = "0" + month) : month;
-      day < 10 ? (day = "0" + day) : day;
-      this.startDate = year + "-" + month + "-" + day;
-      this.endDate = year + "-" + month + "-" + day;
-    }
+    that
+      .$http({
+        method: "get",
+        url: "/Home/Verify/index?token=" + localStorage.getItem("tec_token")
+      })
+      .then(response => {
+        if (response.data.verify) {
+          if(!that.$store.state.class_list[0]){
+            that.$router.push({ path: "/pages/classroom/classroom/classroomReservation" });
+          }
+          that.startClassList = that.$store.state.class_list;
+          that.endClassList = that.$store.state.class_list;
+          that.startClass = that.startClassList[0];
+          that.endClass = that.endClassList[0];
+        } else {
+          //登录过期 => 清除前台存储的登录信息并返回登录页
+          let instance = Toast("登录已失效，请重新登录！");
+          setTimeout(() => {
+            instance.close();
+            localStorage.removeItem("tec_token");
+            localStorage.removeItem("job_num");
+            that.$router.push({ path: "/pages/Login" });
+          }, 1000);
+        }
+      })
+      .catch(error => {
+        alert("网络错误！");
+        console.log(error);
+      });
   },
   methods: {
     //打开日期选择器
@@ -316,74 +239,71 @@ export default {
           this.picker_err = false;
         }
       }
-      /* if (this.startClass.value > this.endClass.value) {
-        this.endClass.title = this.startClass.title;
-        this.endClass.value = this.startClass.value;
-      } */
     },
     //表单提交
     submit: function() {
-      var that = this;
-      if (that.submit_btn) {
-        if (that.picker_err) {
-          MessageBox("提示", "同一日的结束课程节数不能小于开始课程节数");
-          that.picker_err = true;
-        } else {
-          that.picker_err = false;
-          //验证通过
-          that
-            .$http({
-              method: "get",
-              // url: "/Admin/Login/logTodo",
-              url: "./static/mock/login.json",
-              data: {
-                startDate: that.startDate, //开始时间
-                endDate: that.endDate, //结束时间
-                startClass: that.startClass.title, //结束课时
-                endClass: that.endClass.title, //结束课时
-                users: that.users.title, //使用人数
-                purpose: that.purpose.title, //教室用途
-                remarks: that.remarks //结束时间
-              },
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-              },
-              //格式化
-              transformRequest: [
-                function(data) {
-                  let ret = "";
-                  for (let it in data) {
-                    ret +=
-                      encodeURIComponent(it) +
-                      "=" +
-                      encodeURIComponent(data[it]) +
-                      "&";
+      let that = this;
+      if (that.purpose) {
+        if (that.submit_btn) {
+          //关闭提交按钮防止重复提交
+          that.submit_btn = false;
+          if (that.picker_err) {
+            MessageBox("提示", "同一日的结束课程节数不能小于开始课程节数");
+            that.picker_err = true;
+          } else {
+            that.picker_err = false;
+            //验证通过
+            that
+              .$http({
+                method: "post",
+                url: "/Home/Teacher/classroom_submit",
+                data: qs.stringify({
+                  job_num: localStorage.getItem("job_num"), //工号
+                  start_time: that.startDate + "," + that.startClass.id, //开始时间
+                  end_time: that.endDate + "," + that.endClass.id, //结束时间
+                  people: that.users.title, //使用人数
+                  purpose: that.purpose, //教室用途
+                  reason: that.remarks, //备注
+                  id: that.$store.state.class_id //教室id
+                })
+              })
+              .then(response => {
+                if (response.data) {
+                  if (response.data.code == 1) {
+                    let instance = Toast("提交成功");
+                    setTimeout(() => {
+                      instance.close();
+                      that.$router.push({
+                        path: "/pages/classroom/classroom/reservationRecord"
+                      });
+                    }, 500);
+                  } else {
+                    //提交失败则重新开放登录按钮
+                    that.submit_btn = true;
+                    let instance = Toast("提交失败");
+                    setTimeout(() => {
+                      instance.close();
+                    }, 1000);
                   }
-                  return ret;
+                } else {
+                  let instance = Toast("网络错误");
+                  setTimeout(() => {
+                    instance.close();
+                    //提交失败则重新开放登录按钮
+                    that.submit_btn = true;
+                  }, 1000);
                 }
-              ]
-            })
-            .then(response => {
-              let instance = Toast("提交成功");
-              //提交成功之后关闭提交按钮并跳转到预约列表页
-              that.submit_btn = false;
-              setTimeout(() => {
-                instance.close();
-                that.$router.push({
-                  path: "/pages/classroom/classroom/reservationRecord"
-                });
-              }, 500);
-            })
-            .catch(error => {
-              let instance = Toast("提交失败");
-              setTimeout(() => {
-                instance.close();
-              }, 1000);
-              //提交失败则重新开放登录按钮
-              that.submit_btn = true;
-              console.log(error);
-            });
+              })
+              .catch(error => {
+                alert("网络错误");
+                console.log(error);
+                //请求失败重新打开提交按钮
+                that.submit_btn = true;
+              });
+          }
         }
+      } else {
+        MessageBox("提示", "请输入教室用途！");
       }
     }
   }
@@ -433,6 +353,15 @@ export default {
         visibility: hidden;
         clear: both;
         display: block;
+      }
+      .purpose {
+        width: 100%;
+        height: 1.25rem;
+        padding: 0 0.2rem;
+        border: 1px solid #787878;
+        border-radius: 0.2rem;
+        font-size: 0.6rem;
+        color: #808080;
       }
       .item-title {
         width: 2.8rem;

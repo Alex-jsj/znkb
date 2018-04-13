@@ -42,18 +42,7 @@ export default {
   components: {
     Menu,
     SwitchBar
-  },
-  mounted: function() {
-    //修改页面title
-    document.title = "调课申请";
-    //判断登录状态
-    if (!localStorage.getItem("userToken")) {
-      //跳转到登录页
-      this.$router.push({ path: "/pages/Login" });
-    } else {
-    }
-  },
-  methods: {}
+  }
 };
 </script>
 

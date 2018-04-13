@@ -57,7 +57,7 @@ export default {
   name: "leaveInfo",
   data() {
     return {
-      linkActive: 3, //菜单定位
+      linkActive: 5, //菜单定位
       leaveInfo: {}
     };
   },

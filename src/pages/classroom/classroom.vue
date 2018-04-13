@@ -23,7 +23,7 @@ export default {
   name: "classroom",
   data() {
     return {
-      linkActive: 5, //菜单定位
+      linkActive: 3, //菜单定位
       switchList: [
         {
           title: "教室预约",
@@ -45,12 +45,6 @@ export default {
   mounted: function() {
     //修改页面title
     document.title = "教室预约";
-    //判断登录状态
-    if (!localStorage.getItem("userToken")) {
-      //跳转到登录页
-      this.$router.push({ path: "/pages/Login" });
-    } else {
-    }
   },
   methods: {}
 };

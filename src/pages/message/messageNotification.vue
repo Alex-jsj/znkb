@@ -8,6 +8,7 @@
 
 <template>
   <div class="messageNotification">
+    <mt-spinner type="triple-bounce" class="loading" :class="{'loading-show':!page_loading}"></mt-spinner>
     <!-- 消息列表 -->
     <div class="message">
       <div class="title">
@@ -16,17 +17,18 @@
         <span class="float-left width-3">操作</span>
       </div>
       <ul class="list" v-infinite-scroll="loadMore" infinite-scroll-immediate-check="true" infinite-scroll-disabled="loading" infinite-scroll-distance="0">
-        <li v-for="(item,index) in message_list" :key="index" :class="item.read?'read':'unread'">
-          <div class="width-1 float-left list-item item-1">{{item.date}}</div>
+        <li v-for="(item,index) in message_list" :key="index" :class="item.status?'read':'unread'">
+          <div class="width-1 float-left list-item item-1">{{item.time}}</div>
           <div class="width-2 float-left list-item item-2">
-            <p class="status" :class="item.statusClass">{{item.status}}</p>
+            <!-- <p class="status" :class="item.statusClass">{{item.status}}</p> -->
             <p class="list-title">{{item.title}}</p>
           </div>
           <div class="width-3 float-left list-item">
-            <router-link to="/pages/message/messageInfo" class="info">查看</router-link>
+            <span class="info" @click="lookInfo(item.id,item.status)">查看</span>
           </div>
         </li>
       </ul>
+      <p class="to-bottom" :class="{'bottom-show':bottom}">已经到底啦</p>
     </div>
     <!-- 底部菜单 -->
     <Menu :linkActive="linkActive"></Menu>
@@ -34,7 +36,8 @@
 </template>
 <script>
 //引入loading组件
-import { Indicator } from "mint-ui";
+import { Indicator, Toast } from "mint-ui";
+import qs from "qs"; //序列化
 /* 引入组件 */
 import Menu from "@/components/Menu";
 export default {
@@ -43,29 +46,70 @@ export default {
     return {
       linkActive: 4,
       message_list: [],
-      loading: false
+      loading: false,
+      page_loading: true,
+      bottom: false, //已加载所有数据
+      currentPage: 1 //分页页码
     };
   },
   components: {
     Menu
   },
   mounted: function() {
+    let that = this;
+    //修改页面title
+    document.title = "消息通知";
+    //默认关闭下拉加载 覆盖Indicator插件bug
+    that.loading = true;
     //修改页面title
     document.title = "消息通知";
     //判断登录状态
-    if (!localStorage.getItem("userToken")) {
-      //跳转到登录页
-      this.$router.push({ path: "/pages/Login" });
-    } else {
-      this.$http
-        .get("./static/mock/messageNotification.json")
-        .then(response => {
-          this.message_list = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+    that
+      .$http({
+        method: "get",
+        url: "/Home/Verify/index?token=" + localStorage.getItem("token")
+      })
+      .then(response => {
+        //登录成功之后获取用户数据
+        if (response.data.verify) {
+          that
+            .$http({
+              method: "post",
+              url: "/Home/Index/message",
+              data: {
+                job_num: localStorage.getItem("job_num"),
+                currentPage: this.currentPage,
+                pageSize: 10
+              },
+            })
+            .then(response => {
+              if (response.data) {
+                this.page_loading = false;
+                //打开下拉加载
+                that.loading = false;
+                this.message_list = response.data;
+              } else {
+                let instance = Toast("暂无数据");
+                this.page_loading = false;
+              }
+            })
+            .catch(error => {
+              alert("网络错误");
+            });
+        } else {
+          //登录过期 => 清除前台存储的登录信息并返回登录页
+          let instance = Toast("登录已失效，请重新登录！");
+          setTimeout(() => {
+            instance.close();
+            localStorage.removeItem("userToken");
+            localStorage.removeItem("student_num");
+            this.$router.push({ path: "/pages/Login" });
+          }, 1000);
+        }
+      })
+      .catch(error => {
+        alert("网络错误！");
+      });
   },
   methods: {
     loadMore() {

@@ -9,14 +9,12 @@
   <div class="home" :class='bg_choose ? "home-good": "home-bad"'>
     <div class="info">
       <div class="top-box">
-        <span class="date float-left">2018/01/31 星期三</span>
-        <router-link to="/pages/Login" class="float-right" @click="outLogin()">
-          <span class="outlogin" @click="outLogin()">退出登录</span>
-        </router-link>
+        <span class="date float-left">{{the_date| formatTime('YMD')}}&nbsp;&nbsp;&nbsp;{{the_week}}</span>
+        <span class="outlogin  float-right" @click="outLogin()">退出登录</span>
       </div>
       <p class="name">{{user_info.name}}</p>
-      <p class="department">{{user_info.department}}</p>
-      <p class="job_number">{{user_info.job_number}}</p>
+      <p class="department">{{user_info.faculty}} {{user_info.grade}}</p>
+      <p class="job_number">{{user_info.job_num}}</p>
     </div>
     <!-- 考勤信息 -->
     <div class="attendance">
@@ -26,12 +24,12 @@
       <div class="container">
         <p class="left">
           <span class="text1 float-left">请假：</span>
-          <span class="text2 float-left">{{user_info.leave}}</span>
+          <span class="text2 float-left">{{user_info.request}}</span>
           <span class="text1 float-left">次</span>
         </p>
         <p class="middle">
           <span class="text1 float-left">旷课：</span>
-          <span class="text2 float-left">{{user_info.absenteeism}}</span>
+          <span class="text2 float-left">{{user_info.truant}}</span>
           <span class="text1 float-left">节</span>
         </p>
         <p class="right">
@@ -47,7 +45,7 @@
           <router-link :to="item.menu_link">
             <img :src="item.img_src" :class="item.img_class">
             <p class="menu-title">{{item.menu_title}}</p>
-            <p class="prompt" v-if="item.new_message">{{message}}</p>
+            <p class="prompt" v-if="item.information">{{message}}</p>
           </router-link>
         </li>
       </ul>
@@ -56,7 +54,7 @@
           <router-link :to="item.menu_link">
             <img :src="item.img_src" :class="item.img_class">
             <p class="menu-title">{{item.menu_title}}</p>
-            <p class="prompt" v-if="item.new_message">{{message}}</p>
+            <p class="prompt" v-if="item.information">{{message}}</p>
           </router-link>
         </li>
       </ul>
@@ -64,10 +62,14 @@
   </div>
 </template>
 <script>
+import { Toast } from "mint-ui";
+import qs from "qs"; //序列化
 export default {
   name: "Home",
   data() {
     return {
+      the_date: new Date(), //当日时间
+      the_week: "", //当日周几
       user_info: Object,
       message: 0,
       attendance: 100,
@@ -179,61 +181,105 @@ export default {
   mounted: function() {
     //修改页面title
     document.title = "设计艺术学院智慧管理系统";
-    //判断登录状态
-    if (!localStorage.getItem("userToken")) {
-      //跳转到登录页
-      this.$router.push({ path: "/pages/Login" });
-    } else {
-      let cw =
-        window.innerWidth ||
-        document.documentElement.clientWidth ||
-        document.body.clientWidth;
-      this.$http
-        .get("./static/mock/home.json")
-        .then(response => {
-          this.user_info = response.data;
-          //消息通知
-          if (this.user_info.new_message > 99) {
-            this.message = "99+";
-          } else if (this.user_info.new_message == 0) {
-            this.clear_message(this.menu_good);
-            this.clear_message(this.menu_bad);
-          } else {
-            this.message = this.user_info.new_message;
-          }
-          //出勤率
-          this.attendance = Math.round(
-            (1 -
-              (response.data.leave + response.data.absenteeism) /
-                response.data.all_class) *
-              100
-          );
-          let time_canvas = document.getElementById("attendance");
-          let canvas_color;
-          //根据出勤率更换首页风格
-          if (this.attendance < 90) {
-            this.bg_choose = false;
-            canvas_color = "#cb121b";
-          } else {
-            this.bg_choose = true;
-            canvas_color = "#86c03f";
-          }
-          //出勤率进度条
-          this.drawMain(time_canvas, this.attendance, canvas_color, "#c8c8c8");
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    let that = this;
+    //设置当日时间
+    let the_date = that.the_date.getDay();
+    if (the_date == 1) {
+      that.the_week = "周一";
+    } else if (the_date == 2) {
+      that.the_week = "周二";
+    } else if (the_date == 3) {
+      that.the_week = "周三";
+    } else if (the_date == 4) {
+      that.the_week = "周四";
+    } else if (the_date == 5) {
+      that.the_week = "周五";
+    } else if (the_date == 6) {
+      that.the_week = "周六";
+    } else if (the_date == 7) {
+      that.the_week = "周日";
     }
+    //进页面先判断登录是否过期
+    that
+      .$http({
+        method: "get",
+        url: "/Home/Verify/index?token=" + localStorage.getItem("tec_token")
+      })
+      .then(response => {
+        if (response.data.verify) {
+          //登录未过期 => 获取用户数据
+          that
+            .$http({
+              method: "post",
+              url: "/Home/Teacher/index",
+              data: qs.stringify({
+                job_num: localStorage.getItem("job_num")
+              })
+            })
+            .then(response => {
+              that.user_info = response.data;
+              //消息通知
+              if (that.user_info.information > 99) {
+                that.message = "99+";
+              } else if (that.user_info.information == 0) {
+                that.clear_message(that.menu_good);
+                that.clear_message(that.menu_bad);
+              } else {
+                that.message = that.user_info.information;
+              }
+              //出勤率
+              if (response.data.request) {
+                that.attendance = Math.round(
+                  (1 -
+                    (response.data.request + response.data.truant) /
+                      response.data.count) *
+                    100
+                );
+              }
+              let time_canvas = document.getElementById("attendance");
+              let canvas_color;
+              //根据出勤率更换首页风格
+              if (that.attendance < 90) {
+                that.bg_choose = false;
+                canvas_color = "#cb121b";
+              } else {
+                that.bg_choose = true;
+                canvas_color = "#86c03f";
+              }
+              //出勤率进度条方法
+              that.drawMain(
+                time_canvas,
+                that.attendance,
+                canvas_color,
+                "#c8c8c8"
+              );
+            })
+            .catch(error => {
+              alert("网络错误");
+              console.log(error);
+            });
+        } else {
+          //登录过期 => 清除前台存储的登录信息并返回登录页
+          let instance = Toast("登录已失效，请重新登录！");
+          setTimeout(() => {
+            instance.close();
+            localStorage.removeItem("tec_token");
+            localStorage.removeItem("job_num");
+            this.$router.push({ path: "/pages/Login" });
+          }, 1000);
+        }
+      })
+      .catch(error => {
+        alert("网络错误");
+        console.log(error);
+      });
   },
   methods: {
-    /* 
-        @drawing_elem: 绘制对象 
-        @percent：绘制圆环百分比, 范围[0, 100] 
-        @forecolor: 绘制圆环的前景色，颜色代码 
-        @bgcolor: 绘制圆环的背景色，颜色代码 
-    */
     drawMain: function(drawing_elem, percent, forecolor, bgcolor) {
+      // @drawing_elem: 绘制对象
+      // @percent：绘制圆环百分比, 范围[0, 100]
+      // @forecolor: 绘制圆环的前景色，颜色代码
+      // @bgcolor: 绘制圆环的背景色，颜色代码
       var context = drawing_elem.getContext("2d");
       var center_x = drawing_elem.width / 2;
       var center_y = drawing_elem.height / 2;
@@ -299,13 +345,74 @@ export default {
     },
     //退出登录
     outLogin: function() {
-      localStorage.removeItem("userToken");
+      this.$http({
+        method: "get",
+        url: "/Home/login/logout"
+      })
+        .then(response => {
+          if (response.data) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("job_num");
+            let instance = Toast("登出成功");
+            setTimeout(() => {
+              instance.close();
+              this.$router.push({ path: "/pages/Login" });
+            }, 500);
+          }
+        })
+        .catch(error => {
+          let instance = Toast("网络错误");
+          setTimeout(() => {
+            instance.close();
+          }, 1000);
+          console.log(error);
+        });
     },
     //清除消息通知小红点
     clear_message: function(obj) {
       for (let i = 0; i < obj.length; i++) {
         obj[i].new_message = false;
       }
+    }
+  },
+  filters: {
+    // 时间过滤器
+    formatTime: function(value, type) {
+      let dataTime = "";
+      let data = new Date();
+      data.setTime(value);
+      let year = data.getFullYear();
+      let month = data.getMonth() + 1;
+      let day = data.getDate();
+      let hour = data.getHours();
+      let minute = data.getMinutes();
+      let second = data.getSeconds();
+      month < 10 ? (month = "0" + month) : month;
+      day < 10 ? (day = "0" + day) : day;
+      hour < 10 ? (hour = "0" + hour) : hour;
+      minute < 10 ? (minute = "0" + minute) : minute;
+      second < 10 ? (second = "0" + second) : second;
+      if (type == "YMD") {
+        dataTime = year + "-" + month + "-" + day;
+      } else if (type == "YMDHMS") {
+        dataTime =
+          year +
+          "-" +
+          month +
+          "-" +
+          day +
+          "  " +
+          hour +
+          ":" +
+          minute +
+          ":" +
+          second;
+      } else if (type == "HMS") {
+        dataTime = hour + ":" + minute + ":" + second;
+      } else if (type == "YM") {
+        dataTime = year + "-" + month + "-";
+      }
+      return dataTime; // 将格式化后的字符串输出到前端显示
     }
   }
 };
